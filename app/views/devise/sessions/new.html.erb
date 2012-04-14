@@ -1,0 +1,36 @@
+<% content_for :padding do %>
+15%
+<% end %>
+		<div class="row">
+			<%= render 'logo' %>
+
+      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+      <div class="row">
+
+      	<div class="span3 offset2">
+					<%= f.email_field :email, :class => "span3 large", :placeholder => "Email" %>
+				</div>
+				<div class="span3">
+					<%= f.password_field :password, :class => "span3 large", :placeholder => "Password" %>
+				</div>
+				<!-- <a class="btn btn-large btn-primary span2" href="dashboard.html" style="font-weight: bold;">Sign In</a> -->
+				<div class="span2">
+				<%= f.submit "Sign in", :class => "btn btn-large btn-primary", :style => "font-weight: bold; width: 100%;" %>
+				</div>
+      </div>
+      <div class="row" style="margin-bottom: 20px;">
+      	<div class="span3 offset2">
+	  			<label class="checkbox" for="user_remember_me">
+				    <%= f.check_box :remember_me %> Remember Me
+				  </label>
+
+				</div>
+      	<div class="span3">
+					<%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
+					  <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+					<% end -%>
+					<% end %>
+				</div>
+      </div>
+   </div>
+

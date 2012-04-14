@@ -1,0 +1,22 @@
+<% content_for :padding do %>
+10%
+<% end %>
+		<div class="row">
+			<%= render 'logo' %>
+      <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+      <div class="row">
+      	<div class="span4 offset4" style="box-shadow: 0px 0px 14px #ccc; padding: 20px;">
+      		<h3>Forgot your password?</h3>
+      		<p style="margin: 20px 0px;">No worries.  Just enter your email address and we'll send you instructions to reset it.</p>
+      		<%= f.email_field :email, :class => "span4 large", :style => "margin-bottom:20px;", :placeholder => "Email" %>
+      		<%= f.submit "Send instructions", :class => "btn btn-large", :style => "font-weight: bold; margin: 0px;" %>
+					<%= link_to "Cancel", home_index_path, :style => "font-weight: bold; margin-left: 20px; position: relative; top: 3px;" %>
+				</div>
+      </div>
+      <% end %>
+
+
+      <div class="row" style="margin-bottom: 20px;">
+
+      </div>
+   </div>

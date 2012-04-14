@@ -1,6 +1,10 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.2'
+gem 'devise'
+gem 'friendly_id'
+gem 'RedCloth'
+gem 'liquid'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

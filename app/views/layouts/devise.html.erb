@@ -8,8 +8,8 @@
 </head>
 <body>
 
-		<div id="wrap">
-			<div id="main" class="container" style="padding-top: 60px;">
+	  <div id="wrap">
+			<div id="main" class="container" style="padding-top: <%= yield :padding %>;">
 				<% if flash[:alert] %>
 			    <p class="alert alert-error"><%= flash[:alert] %></p>
 			  <% end %>

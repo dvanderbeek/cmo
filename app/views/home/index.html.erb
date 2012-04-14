@@ -1,0 +1,24 @@
+<% if !user_signed_in? %>
+<a class="btn" data-toggle="modal" href="#myModal" >Sign Up</a>
+<% end %>
+<br /><br />
+<h1>Condo Motion</h1>
+<p>This is our homepage!</p>
+
+<div class="modal hide fade" id="myModal">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>Sign up</h3>
+  </div>
+  <%= form_for("user", :url => user_registration_path, :style => "margin: 0px;") do |f| %>
+  <div class="modal-body">
+	  <div><%= f.email_field :email, :class => "large", :placeholder => "Email" %></div>
+	  <div><%= f.password_field :password, :class => "large", :placeholder => "Password" %></div>
+	  <div><%= f.password_field :password_confirmation, :class => "large", :placeholder => "Confirm Password" %></div>
+	  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+    <%= f.submit "Sign up", :class => "btn btn-primary" %>
+  </div>
+  <% end %>
+</div>

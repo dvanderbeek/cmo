@@ -1,0 +1,15 @@
+<footer>
+	<div class="container">
+		<p style="float:left;">&copy; Condo Motion 2012</p>
+		<div class="pull-right">
+			<div id="user_nav" style="">
+			  <% if user_signed_in? %>
+			    Signed in as <%= current_user.email %>. Not you?
+			    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+			  <% else %>
+			    <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
+			  <% end %>
+			</div>
+		</div>
+	</div>
+</footer>
