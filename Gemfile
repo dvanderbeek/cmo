@@ -6,7 +6,6 @@ gem 'friendly_id'
 gem 'RedCloth'
 gem 'liquid'
 gem 'heroku'
-gem 'thin'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
