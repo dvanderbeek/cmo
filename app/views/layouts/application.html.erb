@@ -5,24 +5,25 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <link rel="shortcut icon" href="favicon.png">
 </head>
 <body>
 
-		<div id="wrap">
-			<div id="main" class="container" style="padding-top: 60px;">
-				<% if flash[:alert] %>
-			    <p class="alert alert-error"><%= flash[:alert] %></p>
-			  <% end %>
-			  <% if flash[:notice] %>
-			    <p class="alert alert-success"><%= flash[:notice] %></p>
-			  <% end %>
+<div id="wrap">
+	<div id="main" class="container" style="padding-top: 60px;">
+		<% if flash[:alert] %>
+		  <p class="alert alert-error"><a class="close" data-dismiss="alert">×</a> <%= flash[:alert] %></p>
+		<% end %>
+		<% if flash[:notice] %>
+		  <p class="alert alert-success"><a class="close" data-dismiss="alert">×</a> <%= flash[:notice] %></p>
+		<% end %>
 
-				<%= yield %>
+		<%= yield %>
 
-			</div> <!-- /container -->
-		</div> <!-- /wrap -->
+	</div> <!-- /container -->
+</div> <!-- /wrap -->
 
-	  <%= render 'devise/footer'%>
+<%= render 'devise/footer'%>
 
 </body>
 </html>
