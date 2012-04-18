@@ -1,0 +1,48 @@
+<h1>Your sites</h1>
+
+<p>This layout is temporary.  Need to do a few things next:</p>
+
+<ul>
+	<li>Custom layouts</li>
+	<li>Codemirror</li>
+	<li>Add pages, rows, columns, blocks, assets, members, emails</li>
+</ul>
+
+<table class="table">
+	<thead>
+  <tr>
+    <th>Title</th>
+    <th>Subdomain</th>
+    <th>Seo title</th>
+    <th>Seo meta</th>
+    <th>Seo keywords</th>
+    <th>Robots</th>
+    <th>Layout</th>
+    <th>Custom layout content</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+	<tbody>
+<% @sites.each do |site| %>
+  <tr>
+    <td><%= site.title %></td>
+    <td><%= site.subdomain %></td>
+    <td><%= site.seo_title %></td>
+    <td><%= site.seo_meta %></td>
+    <td><%= site.seo_keywords %></td>
+    <td><%= site.robots %></td>
+    <td><%= site.layout %></td>
+    <td><%= site.custom_layout_content %></td>
+    <td><%= link_to 'Show', root_url(subdomain: site.subdomain) %></td>
+    <td><%= link_to 'Edit', edit_url(subdomain: site.subdomain) %></td>
+    <td><%= link_to 'Destroy', site, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+	</tbody>
+</table>
+
+<br />
+
+<%= link_to 'New Site', new_site_path, :class => "btn btn-primary" %>

@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @site.title %>
+</p>
+
+<p>
+  <b>Subdomain:</b>
+  <%= @site.subdomain %>
+</p>
+
+<p>
+  <b>Seo title:</b>
+  <%= @site.seo_title %>
+</p>
+
+<p>
+  <b>Seo meta:</b>
+  <%= @site.seo_meta %>
+</p>
+
+<p>
+  <b>Seo keywords:</b>
+  <%= @site.seo_keywords %>
+</p>
+
+<p>
+  <b>Robots:</b>
+  <%= @site.robots %>
+</p>
+
+<p>
+  <b>Layout:</b>
+  <%= @site.layout %>
+</p>
+
+<p>
+  <b>Custom layout content:</b>
+  <%= @site.custom_layout_content %>
+</p>
+
+<%= link_to 'Edit', edit_url %> |
+<%= link_to 'Back', sites_url(subdomain: false) %>

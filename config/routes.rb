@@ -1,9 +1,16 @@
 Cms::Application.routes.draw do
-
   devise_for :users
+  resources :sites
+
+  # constraints(Subdomain) do
+    # #page_routes.call
+    # match '/' => 'sites#show'
+    # match '/edit' => 'sites#edit'
+  # end
+  match '', to: 'sites#show', constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
+  match '/edit', to: 'sites#edit', constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
 
   get "home/index"
-
   root :to => 'home#index'
 
   # The priority is based upon order of creation:

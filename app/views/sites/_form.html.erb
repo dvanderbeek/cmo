@@ -1,0 +1,50 @@
+<%= form_for(@site, :html => {:class => 'ctrl'}) do |f| %>
+  <% if @site.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@site.errors.count, "error") %> prohibited this site from being saved:</h2>
+
+      <ul>
+      <% @site.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :subdomain %>
+    <%= f.text_field :subdomain %>
+  </div>
+  <div class="field">
+    <%= f.label :seo_title %>
+    <%= f.text_field :seo_title %>
+  </div>
+  <div class="field">
+    <%= f.label :seo_meta %>
+    <%= f.text_area :seo_meta %>
+  </div>
+  <div class="field">
+    <%= f.label :seo_keywords %>
+    <%= f.text_area :seo_keywords %>
+  </div>
+  <div class="field">
+    <%= f.label :robots %>
+    <%= f.text_area :robots %>
+  </div>
+  <div class="field">
+    <%= f.label :layout %>
+    <%= f.text_field :layout %>
+  </div>
+  <div class="field">
+    <%= f.label :custom_layout_content %>
+    <%= f.text_area :custom_layout_content %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
