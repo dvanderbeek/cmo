@@ -7,7 +7,7 @@ class CreateSites < ActiveRecord::Migration
       t.text :seo_meta
       t.text :seo_keywords
       t.text :robots
-      t.string :layout
+      t.string :layout, :default => "custom"
       t.text :custom_layout_content
       t.references :user
 

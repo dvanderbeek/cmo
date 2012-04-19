@@ -95,10 +95,6 @@ input.large {
 .nav-list .active > a, .nav-list .active > a:hover {
 	background: white;
 	color: #333;
-	border: 1px solid #DDD;
-}
-.nav-list a, .nav-list a:hover {
-	border-right: 1px solid #DDD;
 }
 .move {
 	cursor: move;
@@ -138,46 +134,46 @@ input.large {
 	margin: 0px;
 }
 .icon-eye-lg {
-	background: url('../../assets/img/glyphicons/glyphicons_051_eye_open.png') no-repeat 50%;
+	background: url('glyphicons/glyphicons_051_eye_open.png') no-repeat 50%;
 }
 .icon-eye-lg:hover, .icon-eye-lg.active-lg  {
-	background: url('../../assets/img/glyphicons/glyphicons_051_eye_open_white.png') no-repeat 50%;
+	background: url('glyphicons/glyphicons_051_eye_open_white.png') no-repeat 50%;
 }
 .icon-lock-lg {
-	background: url('../../assets/img/glyphicons/glyphicons_203_lock.png') no-repeat 50%;
+	background: url('glyphicons/glyphicons_203_lock.png') no-repeat 50%;
 }
 .icon-lock-lg:hover, .icon-lock-lg.active-lg  {
-	background: url('../../assets/img/glyphicons/glyphicons_203_lock_white.png') no-repeat 50%;
+	background: url('glyphicons/glyphicons_203_lock_white.png') no-repeat 50%;
 }
 li.icon-cardio-lg {
-	background: url('../../assets/img/glyphicons/glyphicons_282_cardio.png') no-repeat 50%;
+	background: url('glyphicons/glyphicons_282_cardio.png') no-repeat 50%;
 }
 .icon-cardio-lg:hover, .icon-cardio-lg.active-lg {
-	background: url('../../assets/img/glyphicons/glyphicons_282_cardio_white.png') no-repeat 50%;
+	background: url('glyphicons/glyphicons_282_cardio_white.png') no-repeat 50%;
 }
 .icon-pages-lg {
-	background: url('../../assets/img/glyphicons/glyphicons_318_more-items.png') no-repeat 50%;
+	background: url('glyphicons/glyphicons_318_more-items.png') no-repeat 50%;
 }
 .icon-pages-lg:hover, .icon-pages-lg.active-lg {
-	background: url('../../assets/img/glyphicons/glyphicons_318_more-items_white.png') no-repeat 50%;
+	background: url('glyphicons/glyphicons_318_more-items_white.png') no-repeat 50%;
 }
 .icon-cogs-lg {
-	background: url('../../assets/img/glyphicons/glyphicons_023_cogwheels.png') no-repeat 50%;
+	background: url('glyphicons/glyphicons_023_cogwheels.png') no-repeat 50%;
 }
 .icon-cogs-lg:hover, .icon-cogs-lg.active-lg {
-	background: url('../../assets/img/glyphicons/glyphicons_023_cogwheels_white.png') no-repeat 50%;
+	background: url('glyphicons/glyphicons_023_cogwheels_white.png') no-repeat 50%;
 }
 .icon-imac-lg {
-	background: url('../../assets/img/glyphicons/glyphicons_160_imac.png') no-repeat 50%;
+	background: url('glyphicons/glyphicons_160_imac.png') no-repeat 50%;
 }
 .icon-imac-lg:hover, .icon-imac-lg.active-lg  {
-	background: url('../../assets/img/glyphicons/glyphicons_160_imac_white.png') no-repeat 50%;
+	background: url('glyphicons/glyphicons_160_imac_white.png') no-repeat 50%;
 }
 .icon-usd-lg {
-	background: url('../../assets/img/glyphicons/glyphicons_227_usd.png') no-repeat 50%;
+	background: url('glyphicons/glyphicons_227_usd.png') no-repeat 50%;
 }
 .icon-usd-lg:hover, .icon-usd-lg.active-lg  {
-	background: url('../../assets/img/glyphicons/glyphicons_227_usd_white.png') no-repeat 50%;
+	background: url('glyphicons/glyphicons_227_usd_white.png') no-repeat 50%;
 }
 
 

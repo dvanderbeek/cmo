@@ -9,14 +9,18 @@ class ApplicationController < ActionController::Base
   protected
 
   def load_site
-     @site = Site.find_by_subdomain!(request.subdomain)
+    @current_site = Site.find_by_subdomain(request.subdomain)
+    if @current_site.nil?
+      flash[:error] = "Site invalid"
+      redirect_to sites_url(subdomain: false)
+    end
   end
 
   def layout_by_resource
     if devise_controller?
       "devise"
     else
-      "application"
+      (@current_site && @current_site.layout) || 'application'
     end
   end
 end

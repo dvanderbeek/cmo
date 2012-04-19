@@ -6,3 +6,10 @@ $(document).ready ->
 	$.ctrl('S', () =>
 		$(".ctrl").submit();
 	)
+
+	$(".sortable").sortable({items: "li:not(.ui-state-disabled)"});
+
+	$('body').tooltip({
+	  selector: "a[rel=tooltip]",
+	  placement: "right"
+	});

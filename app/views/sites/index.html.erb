@@ -3,9 +3,8 @@
 <p>This layout is temporary.  Need to do a few things next:</p>
 
 <ul>
-	<li>Custom layouts</li>
 	<li>Codemirror</li>
-	<li>Add pages, rows, columns, blocks, assets, members, emails</li>
+	<li>Add pages (acts_as_tree), rows, columns, blocks, assets, members, emails</li>
 </ul>
 
 <table class="table">
@@ -34,7 +33,7 @@
     <td><%= site.seo_keywords %></td>
     <td><%= site.robots %></td>
     <td><%= site.layout %></td>
-    <td><%= site.custom_layout_content %></td>
+    <td><%= raw site.custom_layout_content %></td>
     <td><%= link_to 'Show', root_url(subdomain: site.subdomain) %></td>
     <td><%= link_to 'Edit', edit_url(subdomain: site.subdomain) %></td>
     <td><%= link_to 'Destroy', site, confirm: 'Are you sure?', method: :delete %></td>

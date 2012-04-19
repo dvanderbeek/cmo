@@ -25,19 +25,19 @@
   </div>
   <div class="field">
     <%= f.label :seo_meta %>
-    <%= f.text_area :seo_meta %>
+    <%= f.text_area :seo_meta, :rows => 5 %>
   </div>
   <div class="field">
     <%= f.label :seo_keywords %>
-    <%= f.text_area :seo_keywords %>
+    <%= f.text_area :seo_keywords, :rows => 5 %>
   </div>
   <div class="field">
     <%= f.label :robots %>
-    <%= f.text_area :robots %>
+    <%= f.text_area :robots, :rows => 5 %>
   </div>
   <div class="field">
     <%= f.label :layout %>
-    <%= f.text_field :layout %>
+    <%= f.select :layout, [["Standard", 'application'], ["Custom", 'custom']] %>
   </div>
   <div class="field">
     <%= f.label :custom_layout_content %>

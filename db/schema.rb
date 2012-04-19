@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120416235750) do
+ActiveRecord::Schema.define(:version => 20120416235751) do
 
   create_table "friendly_id_slugs", :force => true do |t|
     t.string   "slug",                         :null => false
@@ -31,11 +31,11 @@ ActiveRecord::Schema.define(:version => 20120416235750) do
     t.text     "seo_meta"
     t.text     "seo_keywords"
     t.text     "robots"
-    t.string   "layout"
+    t.string   "layout",                :default => "custom", :null => false
     t.text     "custom_layout_content"
     t.integer  "user_id"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
   end
 
   add_index "sites", ["user_id"], :name => "index_sites_on_user_id"

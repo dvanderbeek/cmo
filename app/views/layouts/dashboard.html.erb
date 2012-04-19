@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Condo Motion</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <link rel="shortcut icon" href="favicon.png">
+</head>
+
+
+  <body>
+
+	<div id="side-nav-primary">
+		<div style="padding-top: 30px; text-align: center;">
+<!-- 		icons are adjusted to 55% lightness and then 95% again for the white ones	 -->
+			<ul class="nav nav-list nav-list-padded" style="padding: 0px;">
+				<li class="icon-pages-lg active-lg"><a rel="tooltip" data-original-title="Pages & Content" href="#"></a></li>
+				<li class="icon-cardio-lg"><a rel="tooltip" data-original-title="Activity & Comments" href="#"></a></li>
+				<li class="icon-usd-lg"><a rel="tooltip" data-original-title="Payments" href="#"></a></li>
+				<li class="icon-cogs-lg"><a rel="tooltip" data-original-title="Settings" href="#"></a></li>
+				<li class="icon-imac-lg"><%= link_to "", sites_url(subdomain: false), 'data-original-title' => "Your Sites", :rel => "tooltip"%></li>
+				<li class="icon-eye-lg"><a rel="tooltip" data-original-title="Preview" id="preview" href="#"></a></li>
+			</li>
+    </div>
+	</div>
+	<div id="side-nav-secondary">
+		<div style="padding-top: 30px;">
+			<h4>Pages</h4>
+			<ul class="nav nav-list sortable">
+	      <li class="active"><a href="dashboard.html"><i class="icon-home move"></i> Dashboard<i class="close" style="float: right;">×</i></a></li>
+	      <li><a href="library.html"><i class="icon-file move"></i> Library<i class="close" style="float: right;">×</i></a></li>
+	      <li><a href="applications.html"><i class="icon-file move"></i> Applications<i class="close" style="float: right;">×</i></a></li>
+	      <li class="ui-state-disabled"><a href="#add_page" data-toggle="modal" data-backdrop="true" data-keyboard="true" style="color: #333;"><i class="icon-plus"></i> Add a Page</a></li>
+	    </ul>
+
+	    <hr/>
+
+	    <h4>Content</h4>
+	    <ul class="nav nav-list">
+	      <li><a href="files.php"><i class="icon-folder-open"></i> Files</a></li>
+	    </ul>
+    </div>
+	</div>
+	<div id="canvas">
+		<div id="canvas-padding">
+			<input type="text" value="Dashboard" id="page-title"/>
+			<i class="icon-cogs-lg pull-right" id="page-settings-toggle" style="width: 26px; height: 26px; margin-bottom: 5px; margin-left: 7px; cursor: pointer;"></i>
+			<%= link_to raw('<i class="icon-eye-lg pull-right" id="page-design-toggle" style="width: 31px; height: 26px; margin-bottom: 5px; margin-left: 7px; cursor: pointer;"></i>'), root_url(subdomain: @site.subdomain) %>
+
+			<i class="icon-lock-lg pull-right" id="page-permissions-toggle" style="width: 26px; height: 26px; margin-bottom: 5px; margin-left: 7px; cursor: pointer;"></i>
+			<div class="clear"></div>
+			<div id="page-settings" class="row-fluid" style="border-top: 1px solid #f1f1f1; border-bottom: 1px solid #f1f1f1; display: none;">
+				<div class="span3">
+					<ul class="nav nav-list">
+			      <li><a href="#" style="border: none;"><i class="icon-book move"></i> CSS &amp; JS</a></li>
+			      <li><a href="#" style="border: none;"><i class="icon-pencil move"></i> Meta</a></li>
+			    </ul>
+				</div>
+				<div class="span9">Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings </div>
+			</div>
+			<div class="row-fluid" style="position: relative; margin-top: 10px;">
+		  	<%= yield %>
+		  </div>
+
+
+		</div>
+	</div>
+
+		<div id="add_page" class="modal modal-fixed" style="display: none;">
+      <div class="modal-header">
+        <a class="close" data-dismiss="modal">×</a>
+        <h3>Add a Page</h3>
+      </div>
+      <div class="modal-body">
+        <p>Modal Body</p>
+      </div>
+      <div class="modal-footer">
+      	<div class="modal-footer-padding">
+      		<a href="#" class="btn secondary" data-dismiss="modal">Cancel</a>
+          <a href="#" class="btn btn-primary">Save</a>
+
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+</head>
+
+    <script src="../../assets/js/editor.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$("#page-settings-toggle").click(function(){
+					$("#page-settings").slideToggle('fast');
+				});
+
+				$("#preview").click(function(){
+					$("#side-nav-secondary").toggle();
+					if ($("#side-nav-secondary").is(":visible")) {
+						$("#canvas-padding").css('padding-left', '350px');
+					} else {
+						$("#canvas-padding").css('padding-left', '100px');
+					}
+
+				});
+			});
+		</script>
+<!-- 		<script type="text/javascript">
+			Aloha.ready( function() {
+				Aloha.settings.floatingmenu = {
+					width: 630, // with of the floating menu; auto calculated when not set
+			    behaviour: 'topalign', // 'float' (default), 'topalign', 'append'
+			    draggable: false, // boolean
+			    marginTop: 10, // number in px
+			    horizontalOffset: 0, // number in px -- used with 'topalign' behaviour
+			    topalignOffset: 0 // number in px -- used with 'topalign' behaviour
+				};
+        // Make #content editable once Aloha is loaded and ready.
+				Aloha.jQuery('.aloha').aloha({
+					settings: {
+						floatingmenu: {
+							behaviour: 'topalign',
+							draggable: false
+						},
+						toolbar: {
+							tabs : {
+				        // will generate a tab labeled "formatting"
+				        formatting : {
+				            // group "flow"
+				            flow : [ 'b', 'em', 'u' ],
+				            // group "phrasing"
+				            phrasing : [ 'phrasing' ] // "phrasing" is the name of a
+				            // MultiSplitButton from the format plugin, which contains
+				            // elements like h1 ...
+				        },
+				        // will generate another tab labeled "insert"
+				        insert : {
+				            // as mentioned group names are not displayed anywhere,
+				            // so you might pick an arbitrary name
+				            first : [ 'image', 'insertLink' ]
+				        }
+					    },
+							components: {
+								phrasing : [ 'h1', 'h2', 'h3' ]
+							}
+						}
+					}
+				});
+    	});
+		</script> -->
+
+  </body>
+</html>
