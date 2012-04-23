@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120416235751) do
+ActiveRecord::Schema.define(:version => 20120422205829) do
 
   create_table "friendly_id_slugs", :force => true do |t|
     t.string   "slug",                         :null => false
@@ -24,6 +24,30 @@ ActiveRecord::Schema.define(:version => 20120416235751) do
   add_index "friendly_id_slugs", ["sluggable_id"], :name => "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], :name => "index_friendly_id_slugs_on_sluggable_type"
 
+  create_table "layouts", :force => true do |t|
+    t.string   "name"
+    t.text     "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "title"
+  end
+
+  create_table "pages", :force => true do |t|
+    t.string   "title"
+    t.string   "slug"
+    t.integer  "position"
+    t.integer  "parent"
+    t.text     "content"
+    t.string   "seo_title"
+    t.text     "seo_meta"
+    t.text     "seo_keywords"
+    t.integer  "site_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "pages", ["site_id"], :name => "index_pages_on_site_id"
+
   create_table "sites", :force => true do |t|
     t.string   "title"
     t.string   "subdomain"
@@ -31,11 +55,10 @@ ActiveRecord::Schema.define(:version => 20120416235751) do
     t.text     "seo_meta"
     t.text     "seo_keywords"
     t.text     "robots"
-    t.string   "layout",                :default => "custom", :null => false
-    t.text     "custom_layout_content"
     t.integer  "user_id"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "layout_id"
   end
 
   add_index "sites", ["user_id"], :name => "index_sites_on_user_id"

@@ -1,4 +1,7 @@
 <!DOCTYPE html>
-<h1>CUSTOM LAYOUT</h1>
-<%= Liquid::Template.parse(@current_site.custom_layout_content).
-      render('page_content' => yield, 'page_title' => yield(:title)).html_safe %>
+<%= liquidize @current_site.layout.content, {
+	'page_content' => yield,
+	'site' => @site,
+	'page' => @page
+	}
+%>

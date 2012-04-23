@@ -30,15 +30,5 @@
   <%= @site.robots %>
 </p>
 
-<p>
-  <b>Layout:</b>
-  <%= @site.layout %>
-</p>
-
-<p>
-  <b>Custom layout content:</b>
-  <%= raw @site.custom_layout_content %>
-</p>
-
 <%= link_to 'Edit', edit_url %> |
 <%= link_to 'Back', sites_url(subdomain: false) %>

@@ -1,0 +1,45 @@
+<%= form_for(@page, :remote => true, :html => {:class => 'ctrl'}) do |f| %>
+  <% if @page.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@page.errors.count, "error") %> prohibited this page from being saved:</h2>
+
+      <ul>
+      <% @page.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.hidden_field :title, :class => "title" %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :position %>
+  </div>
+
+  <div class="field">
+    <%= f.label :parent %>
+    <%= f.collection_select(:parent, @pages, :id, :title, :include_blank => true)%>
+  </div>
+  <div class="field">
+    <%= f.label :content %>
+    <%= f.text_area :content %>
+  </div>
+  <div class="field">
+    <%= f.label :seo_title %>
+    <%= f.text_field :seo_title %>
+  </div>
+  <div class="field">
+    <%= f.label :seo_meta %>
+    <%= f.text_area :seo_meta %>
+  </div>
+  <div class="field">
+    <%= f.label :seo_keywords %>
+    <%= f.text_area :seo_keywords %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

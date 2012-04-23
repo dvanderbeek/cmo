@@ -1,6 +1,10 @@
 Cms::Application.routes.draw do
   devise_for :users
   resources :sites
+  resources :pages
+  post 'pages/sort', :as => :sort_pages
+
+
 
   # constraints(Subdomain) do
     # #page_routes.call
@@ -9,6 +13,12 @@ Cms::Application.routes.draw do
   # end
   match '', to: 'sites#show', constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
   match '/edit', to: 'sites#edit', constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
+  match '/edit_layout', to: 'sites#edit_layout', constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
+  match '/update_layout.:id', to: 'sites#update_layout', constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }, :as => :layout
+  get '/:id', to: 'pages#show', constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }, :as => :page
+  put '/:id', to: 'pages#update', constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }, :as => :update_page
+  delete '/:id', to: 'pages#destroy', constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }, :as => :destroy_page
+  match '/:id/edit', to: 'pages#edit', constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }, :as => :edit_page
 
   get "home/index"
   root :to => 'home#index'

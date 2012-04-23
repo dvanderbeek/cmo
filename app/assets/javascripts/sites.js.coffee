@@ -7,7 +7,13 @@ $(document).ready ->
 		$(".ctrl").submit();
 	)
 
-	$(".sortable").sortable({items: "li:not(.ui-state-disabled)"});
+# $(".sortable").sortable({items: "li:not(.ui-state-disabled)"});
+	jQuery ->
+  $('.sortable').sortable
+    axis: 'y'
+    items: "li:not(.ui-state-disabled)"
+    update: ->
+      $.post($(this).data('update-url'), $(this).sortable('serialize'))
 
 	$('body').tooltip({
 	  selector: "a[rel=tooltip]",

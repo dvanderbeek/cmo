@@ -12,12 +12,7 @@
   <tr>
     <th>Title</th>
     <th>Subdomain</th>
-    <th>Seo title</th>
-    <th>Seo meta</th>
-    <th>Seo keywords</th>
-    <th>Robots</th>
     <th>Layout</th>
-    <th>Custom layout content</th>
     <th></th>
     <th></th>
     <th></th>
@@ -28,12 +23,7 @@
   <tr>
     <td><%= site.title %></td>
     <td><%= site.subdomain %></td>
-    <td><%= site.seo_title %></td>
-    <td><%= site.seo_meta %></td>
-    <td><%= site.seo_keywords %></td>
-    <td><%= site.robots %></td>
-    <td><%= site.layout %></td>
-    <td><%= raw site.custom_layout_content %></td>
+    <td><%= site.layout.title %></td>
     <td><%= link_to 'Show', root_url(subdomain: site.subdomain) %></td>
     <td><%= link_to 'Edit', edit_url(subdomain: site.subdomain) %></td>
     <td><%= link_to 'Destroy', site, confirm: 'Are you sure?', method: :delete %></td>

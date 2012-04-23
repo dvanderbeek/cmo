@@ -20,44 +20,61 @@
 				<li class="icon-usd-lg"><a rel="tooltip" data-original-title="Payments" href="#"></a></li>
 				<li class="icon-cogs-lg"><a rel="tooltip" data-original-title="Settings" href="#"></a></li>
 				<li class="icon-imac-lg"><%= link_to "", sites_url(subdomain: false), 'data-original-title' => "Your Sites", :rel => "tooltip"%></li>
-				<li class="icon-eye-lg"><a rel="tooltip" data-original-title="Preview" id="preview" href="#"></a></li>
+				<!-- <li class="icon-eye-lg"><a rel="tooltip" data-original-title="Preview" id="preview" href="#"></a></li> -->
 			</li>
     </div>
 	</div>
 	<div id="side-nav-secondary">
 		<div style="padding-top: 30px;">
 			<h4>Pages</h4>
-			<ul class="nav nav-list sortable">
-	      <li class="active"><a href="dashboard.html"><i class="icon-home move"></i> Dashboard<i class="close" style="float: right;">×</i></a></li>
-	      <li><a href="library.html"><i class="icon-file move"></i> Library<i class="close" style="float: right;">×</i></a></li>
-	      <li><a href="applications.html"><i class="icon-file move"></i> Applications<i class="close" style="float: right;">×</i></a></li>
-	      <li class="ui-state-disabled"><a href="#add_page" data-toggle="modal" data-backdrop="true" data-keyboard="true" style="color: #333;"><i class="icon-plus"></i> Add a Page</a></li>
+			<ul class="nav nav-list sortable" data-update-url="<%= sort_pages_url %>">
+	      <li class="<%= @page.nil? ? 'active title' : 'title' %> ui-state-disabled"><%= link_to '<i class="icon-home"></i> '.html_safe+@site.title, edit_url, :class => 'title' %></li>
+
+	      <% @pages.each do |page| %>
+				  <%= content_tag_for :li, page, :class => ((!@page.nil? && @page.id == page.id) ? 'active title' : ''), :style => "position: relative;"  do %>
+				  	<%= link_to '<i class="icon-file move"></i> '.html_safe+page.title, edit_page_path(page), :class => 'title' %>
+				  	<%= link_to('×', destroy_page_path(page), :method => 'delete', :confirm => "Are you sure?", :class => "close delete" ) %>
+				  <% end %>
+				<% end %>
+
+				<li class="ui-state-disabled"><a href="#add_page" data-toggle="modal" data-backdrop="true" data-keyboard="true" style="color: #333;"><i class="icon-plus"></i> Add a Page</a></li>
 	    </ul>
 
 	    <hr/>
 
 	    <h4>Content</h4>
 	    <ul class="nav nav-list">
-	      <li><a href="files.php"><i class="icon-folder-open"></i> Files</a></li>
+	      <li><a href="#"><i class="icon-folder-open"></i> Files</a></li>
 	    </ul>
     </div>
 	</div>
 	<div id="canvas">
 		<div id="canvas-padding">
-			<input type="text" value="Dashboard" id="page-title"/>
+			<input type="text" value="<%= !@page.nil? ? @page.title : @site.title %>" id="page-title"/>
 			<i class="icon-cogs-lg pull-right" id="page-settings-toggle" style="width: 26px; height: 26px; margin-bottom: 5px; margin-left: 7px; cursor: pointer;"></i>
-			<%= link_to raw('<i class="icon-eye-lg pull-right" id="page-design-toggle" style="width: 31px; height: 26px; margin-bottom: 5px; margin-left: 7px; cursor: pointer;"></i>'), root_url(subdomain: @site.subdomain) %>
+			<%= link_to raw('<i class="icon-eye-lg pull-right" id="page-design-toggle" style="width: 31px; height: 26px; margin-bottom: 5px; margin-left: 7px; cursor: pointer;"></i>'), ( !@page.nil? ? page_url(@page) : root_url(subdomain: @site.subdomain) ) %>
 
 			<i class="icon-lock-lg pull-right" id="page-permissions-toggle" style="width: 26px; height: 26px; margin-bottom: 5px; margin-left: 7px; cursor: pointer;"></i>
 			<div class="clear"></div>
 			<div id="page-settings" class="row-fluid" style="border-top: 1px solid #f1f1f1; border-bottom: 1px solid #f1f1f1; display: none;">
-				<div class="span3">
-					<ul class="nav nav-list">
-			      <li><a href="#" style="border: none;"><i class="icon-book move"></i> CSS &amp; JS</a></li>
-			      <li><a href="#" style="border: none;"><i class="icon-pencil move"></i> Meta</a></li>
-			    </ul>
+				<div class="tabbable tabs-left">
+				  <ul class="nav nav-tabs" style="margin: 0px;">
+	          <li class="active"><a href="#lA" data-toggle="tab"><i class="icon-book"></i> CSS &amp; JS</a></li>
+	          <li class=""><a href="#lB" data-toggle="tab"><i class="icon-pencil"></i> Meta </a></li>
+	          <li class=""><a href="#lC" data-toggle="tab"><i class="icon-cogs"></i> Other</a></li>
+	        </ul>
+				  <div class="tab-content">
+	          <div class="tab-pane active" id="lA">
+	            <p>I'm in Section A.</p>
+	          </div>
+	          <div class="tab-pane" id="lB">
+	            <p>Howdy, I'm in Section B.</p>
+	          </div>
+	          <div class="tab-pane" id="lC">
+	            <p>What up girl, this is Section C.</p>
+	          </div>
+	        </div>
 				</div>
-				<div class="span9">Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings </div>
 			</div>
 			<div class="row-fluid" style="position: relative; margin-top: 10px;">
 		  	<%= yield %>
@@ -67,23 +84,7 @@
 		</div>
 	</div>
 
-		<div id="add_page" class="modal modal-fixed" style="display: none;">
-      <div class="modal-header">
-        <a class="close" data-dismiss="modal">×</a>
-        <h3>Add a Page</h3>
-      </div>
-      <div class="modal-body">
-        <p>Modal Body</p>
-      </div>
-      <div class="modal-footer">
-      	<div class="modal-footer-padding">
-      		<a href="#" class="btn secondary" data-dismiss="modal">Cancel</a>
-          <a href="#" class="btn btn-primary">Save</a>
-
-          <div class="clear"></div>
-        </div>
-      </div>
-    </div>
+  <%= render "pages/new_form" %>
 
     <!-- Le javascript
     ================================================== -->

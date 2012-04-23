@@ -2,16 +2,16 @@ module LiquidFilters
   include ActionView::Helpers::NumberHelper
 
   def nav(site, page="")
-    @site = Site.find_by_name(site)
+    @site = Site.find_by_subdomain!(site)
     menu = ""
     menu << "<ul class='nav'>"
       @site.pages.each do |pg|
-        if page == pg.name
+        if page == pg.title
           menu << "<li class='active'>"
         else
           menu << "<li>"
         end
-          menu << "<a href='"+pg.url+"'>"+pg.name+"</a>"
+          menu << "<a href='"+pg.slug+"'>"+pg.title+"</a>"
         menu << "</li>"
       end
     menu << "</ul>"

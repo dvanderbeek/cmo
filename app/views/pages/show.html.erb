@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @page.title %>
+</p>
+
+<p>
+  <b>Slug:</b>
+  <%= @page.slug %>
+</p>
+
+<p>
+  <b>Parent:</b>
+  <%= @page.parent %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%= @page.content %>
+</p>
+
+<p>
+  <b>Seo title:</b>
+  <%= @page.seo_title %>
+</p>
+
+<p>
+  <b>Seo meta:</b>
+  <%= @page.seo_meta %>
+</p>
+
+<p>
+  <b>Seo keywords:</b>
+  <%= @page.seo_keywords %>
+</p>
+
+
+<%= link_to 'Edit', edit_page_path(@page) %>

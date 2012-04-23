@@ -7,3 +7,14 @@ $.ctrl = function(key, callback, args) {
         }
     });
 };
+
+
+$(function(){
+	$('#page-title').keyup(function(){
+		var title = $(this).val();
+		$('input.title').val(title);
+		$('li.title').children('a.title').html('<i class="icon-file move"></i> '+title);
+		$('input.title').parent('div').parent('form').submit();
+
+	});
+});

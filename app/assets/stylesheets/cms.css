@@ -107,12 +107,17 @@ input.large {
 	font-weight: normal;
 }
 
-.nav-list a i.close {
-	display: none;
+.nav-list a.close {
 	margin-top: 1px;
+	position: absolute;
+	padding: 0px;
+	top: 6px;
+	right: 14px;
+	float: right;
+	color: rgba(0,0,0,0);
 }
-.nav-list a:hover i.close {
-	display: inline-block;
+.nav-list li:hover a.close {
+	color: #000;
 }
 
 .nav > li > a:hover {
@@ -218,6 +223,11 @@ li.icon-cardio-lg {
 	border-radius: 0px;
 	moz-border-radius: 0px;
 }
+.modal-fixed .modal-body {
+	max-height: 550px;
+
+}
+
 .modal-fixed .modal-footer {
 	position: absolute;
 	bottom: 0px;
@@ -237,6 +247,30 @@ li.icon-cardio-lg {
 	vertical-align: top;
 	box-shadow: none;
 	color: #444;
+	width: 350px;
+}
+.tabs-left .nav-tabs > li > a, .tabs-right .nav-tabs > li > a {
+min-width: 74px;
+margin-right: 0;
+margin-bottom: 0px;
+font-weight: normal;
+color: #555;
+}
+.tabs-left .tab-content	{
+	display: inline;
+}
+.tabs-left .tab-pane {
+	float: left;
+	padding: 8px 10px;
+}
+
+.tabs-left .nav-tabs {
+float: left;
+border-right: 0px;
+}
+
+.tabs-left .nav-tabs .active > a, .tabs-left .nav-tabs .active > a:hover {
+border-color: #f1f1f1 transparent #f1f1f1 #f1f1f1;
 }
 /********************************EDITING COLUMNS STYLES****************************/
 html {

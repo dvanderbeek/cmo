@@ -41,9 +41,38 @@ class SitesController < ApplicationController
   def edit
     @user = current_user
     @site = @user.sites.find_by_subdomain!(request.subdomain)
+    @pages = @site.pages.all
+    @new_page = @site.pages.build
+
     rescue ActiveRecord::RecordNotFound
       flash[:alert] = "You don't have a site with that subdomain!"
       redirect_to sites_url(subdomain: false)
+  end
+
+  def edit_layout
+    @user = current_user
+    @site = @user.sites.find_by_subdomain!(request.subdomain)
+    @layout = @site.layout
+
+    rescue ActiveRecord::RecordNotFound
+      flash[:alert] = "You don't have a site with that subdomain!"
+      redirect_to sites_url(subdomain: false)
+  end
+
+  def update_layout
+    @user = current_user
+    @site = @user.sites.find_by_subdomain!(request.subdomain)
+    @layout = @site.layout
+
+    respond_to do |format|
+      if @layout.update_attributes(params[:layout])
+        format.html { redirect_to root_url(subdomain: @site.subdomain), notice: 'Site was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @site.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # POST /sites

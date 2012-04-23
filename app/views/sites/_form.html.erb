@@ -1,4 +1,4 @@
-<%= form_for(@site, :html => {:class => 'ctrl'}) do |f| %>
+<%= form_for(@site, :remote => true, :html => {:class => 'ctrl'}) do |f| %>
   <% if @site.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@site.errors.count, "error") %> prohibited this site from being saved:</h2>
@@ -12,8 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title %>
+    <%= f.hidden_field :title, :class => 'title' %>
   </div>
   <div class="field">
     <%= f.label :subdomain %>
@@ -36,15 +35,11 @@
     <%= f.text_area :robots, :rows => 5 %>
   </div>
   <div class="field">
-    <%= f.label :layout %>
-    <%= f.select :layout, [["Standard", 'application'], ["Custom", 'custom']] %>
+    <%= f.collection_select(:layout_id, Layout.all, :id, :title)%>
   </div>
-  <div class="field">
-    <%= f.label :custom_layout_content %>
-    <%= f.text_area :custom_layout_content %>
-  </div>
+  <%= link_to "Edit Layout", edit_layout_url %>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => "btn btn-success" %>
   </div>
 <% end %>

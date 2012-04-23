@@ -1,0 +1,54 @@
+<div id="add_page" class="modal" style="display: none;">
+	<%= form_for( @new_page, :style => "margin: 0px;" ) do |f| %>
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>Add a Page</h3>
+  </div>
+  <div class="modal-body">
+		  <% if @new_page.errors.any? %>
+		    <div id="error_explanation">
+		      <h2><%= pluralize(@new_page.errors.count, "error") %> prohibited this page from being saved:</h2>
+
+		      <ul>
+		      <% @new_page.errors.full_messages.each do |msg| %>
+		        <li><%= msg %></li>
+		      <% end %>
+		      </ul>
+		    </div>
+		  <% end %>
+
+		  <div class="field">
+		    <%= f.label :title %>
+		    <%= f.text_field :title %>
+		  </div>
+		  <div class="field">
+		    <%= f.label :parent %>
+		    <%= f.collection_select(:parent, @pages, :id, :title, :include_blank => true)%>
+		  </div>
+		  <div class="field">
+		    <%= f.label :content %>
+		    <%= f.text_area :content %>
+		  </div>
+		  <div class="field">
+		    <%= f.label :seo_title %>
+		    <%= f.text_field :seo_title %>
+		  </div>
+		  <div class="field">
+		    <%= f.label :seo_meta %>
+		    <%= f.text_area :seo_meta %>
+		  </div>
+		  <div class="field">
+		    <%= f.label :seo_keywords %>
+		    <%= f.text_area :seo_keywords %>
+		  </div>
+
+  </div>
+  <div class="modal-footer">
+  	<div class="modal-footer-padding">
+  		<a href="#" class="btn secondary" data-dismiss="modal">Cancel</a>
+  		<%= f.submit :class => "btn btn-primary" %>
+      <div class="clear"></div>
+    </div>
+  </div>
+  <% end %>
+</div>
