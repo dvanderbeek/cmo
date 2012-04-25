@@ -3,5 +3,5 @@ class Page < ActiveRecord::Base
   friendly_id :title, use: :history
   belongs_to :site
   #acts_as_list
-  liquid_methods :title, :slug
+  liquid_methods :title, :slug, :seo_title
 end

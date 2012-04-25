@@ -5,6 +5,7 @@ gem 'devise'
 gem 'friendly_id'
 gem 'RedCloth'
 gem 'liquid'
+gem 'codemirror-rails'
 gem 'heroku'
 
 # Bundle edge Rails instead:

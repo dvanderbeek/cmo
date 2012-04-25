@@ -2,6 +2,7 @@ class SitesController < ApplicationController
   before_filter :authenticate_user!, :except => :show
   before_filter :load_site, :only => :show
   layout 'dashboard', :only => :edit
+
   # GET /sites
   # GET /sites.json
   def index
@@ -53,6 +54,7 @@ class SitesController < ApplicationController
     @user = current_user
     @site = @user.sites.find_by_subdomain!(request.subdomain)
     @layout = @site.layout
+    render :layout => 'codemirror'
 
     rescue ActiveRecord::RecordNotFound
       flash[:alert] = "You don't have a site with that subdomain!"
@@ -66,7 +68,7 @@ class SitesController < ApplicationController
 
     respond_to do |format|
       if @layout.update_attributes(params[:layout])
-        format.html { redirect_to root_url(subdomain: @site.subdomain), notice: 'Site was successfully updated.' }
+        format.html { redirect_to edit_url(subdomain: @site.subdomain), notice: 'Site was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -80,6 +82,7 @@ class SitesController < ApplicationController
   def create
     @user = current_user
     @site = @user.sites.build(params[:site])
+    params[:site][:subdomain] = params[:site][:subdomain].parameterize
 
     respond_to do |format|
       if @site.save
@@ -120,5 +123,10 @@ class SitesController < ApplicationController
       format.html { redirect_to sites_url }
       format.json { head :no_content }
     end
+  end
+
+  def robots
+    @site = Site.find_by_subdomain!(request.subdomain)
+    render 'sites/robots.txt.erb'
   end
 end

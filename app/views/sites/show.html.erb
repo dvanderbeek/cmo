@@ -30,5 +30,6 @@
   <%= @site.robots %>
 </p>
 
-<%= link_to 'Edit', edit_url %> |
-<%= link_to 'Back', sites_url(subdomain: false) %>
+<% if current_user && current_user.id == @site.user_id %>
+<%= link_to 'Edit', edit_url %>
+<% end %>

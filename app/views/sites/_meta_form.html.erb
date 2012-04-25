@@ -1,0 +1,28 @@
+<%= form_for(@site, :remote => true, :html => {:class => 'ctrl'}) do |f| %>
+  <% if @site.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@site.errors.count, "error") %> prohibited this page from being saved:</h2>
+
+      <ul>
+      <% @site.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :seo_title, "SEO Title" %>
+    <%= f.text_field :seo_title %>
+  </div>
+  <div class="field">
+    <%= f.label :seo_meta, "Meta Description" %>
+    <%= f.text_area :seo_meta, :rows => '5', :style => "width: 100%" %>
+  </div>
+  <div class="field">
+    <%= f.label :seo_keywords, "Meta Keywords" %>
+    <%= f.text_area :seo_keywords, :rows => '5', :style => "width: 100%" %>
+  </div>
+
+<% end %>
+

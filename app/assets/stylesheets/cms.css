@@ -237,7 +237,7 @@ li.icon-cardio-lg {
 .modal-fixed .modal-footer-padding {
 	padding: 14px 15px 15px 15px;
 }
-#page-title {
+#page-title, #site-title {
 	border: 0px;
 	margin: 0px;
 	padding: 0px;
@@ -262,6 +262,7 @@ color: #555;
 .tabs-left .tab-pane {
 	float: left;
 	padding: 8px 10px;
+	width: 100%;
 }
 
 .tabs-left .nav-tabs {

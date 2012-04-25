@@ -3,7 +3,7 @@ Cms::Application.routes.draw do
   resources :sites
   resources :pages
   post 'pages/sort', :as => :sort_pages
-
+  match 'robots.txt' => 'sites#robots'
 
 
   # constraints(Subdomain) do

@@ -28,11 +28,11 @@
 		<div style="padding-top: 30px;">
 			<h4>Pages</h4>
 			<ul class="nav nav-list sortable" data-update-url="<%= sort_pages_url %>">
-	      <li class="<%= @page.nil? ? 'active title' : 'title' %> ui-state-disabled"><%= link_to '<i class="icon-home"></i> '.html_safe+@site.title, edit_url, :class => 'title' %></li>
+	      <li class="<%= @page.nil? ? 'active site-title' : 'site-title' %> ui-state-disabled"><%= link_to '<i class="icon-home"></i> '.html_safe+@site.title, edit_url, :class => 'site-title' %></li>
 
 	      <% @pages.each do |page| %>
-				  <%= content_tag_for :li, page, :class => ((!@page.nil? && @page.id == page.id) ? 'active title' : ''), :style => "position: relative;"  do %>
-				  	<%= link_to '<i class="icon-file move"></i> '.html_safe+page.title, edit_page_path(page), :class => 'title' %>
+				  <%= content_tag_for :li, page, :class => ((!@page.nil? && @page.id == page.id) ? 'active page-title' : ''), :style => "position: relative;"  do %>
+				  	<%= link_to '<i class="icon-file move"></i> '.html_safe+page.title, edit_page_path(page), :class => 'page-title' %>
 				  	<%= link_to('×', destroy_page_path(page), :method => 'delete', :confirm => "Are you sure?", :class => "close delete" ) %>
 				  <% end %>
 				<% end %>
@@ -42,36 +42,41 @@
 
 	    <hr/>
 
-	    <h4>Content</h4>
+	    <!-- <h4>Other</h4> -->
 	    <ul class="nav nav-list">
-	      <li><a href="#"><i class="icon-folder-open"></i> Files</a></li>
+	      <!-- <li><a href="#"><i class="icon-folder-open"></i> Files</a></li> -->
+	      <li><%= link_to raw("<i class='icon-edit'></i> Edit Layout"), edit_layout_url %></li>
 	    </ul>
     </div>
 	</div>
 	<div id="canvas">
 		<div id="canvas-padding">
-			<input type="text" value="<%= !@page.nil? ? @page.title : @site.title %>" id="page-title"/>
+			<input type="text" value="<%= !@page.nil? ? @page.title : @site.title %>" id="<%= !@page.nil? ? 'page' : 'site' %>-title"/>
 			<i class="icon-cogs-lg pull-right" id="page-settings-toggle" style="width: 26px; height: 26px; margin-bottom: 5px; margin-left: 7px; cursor: pointer;"></i>
 			<%= link_to raw('<i class="icon-eye-lg pull-right" id="page-design-toggle" style="width: 31px; height: 26px; margin-bottom: 5px; margin-left: 7px; cursor: pointer;"></i>'), ( !@page.nil? ? page_url(@page) : root_url(subdomain: @site.subdomain) ) %>
 
 			<i class="icon-lock-lg pull-right" id="page-permissions-toggle" style="width: 26px; height: 26px; margin-bottom: 5px; margin-left: 7px; cursor: pointer;"></i>
 			<div class="clear"></div>
 			<div id="page-settings" class="row-fluid" style="border-top: 1px solid #f1f1f1; border-bottom: 1px solid #f1f1f1; display: none;">
-				<div class="tabbable tabs-left">
-				  <ul class="nav nav-tabs" style="margin: 0px;">
+				<div class="tabbable tabs-left row-fluid">
+				  <ul class="nav nav-tabs span2" style="margin: 0px;">
 	          <li class="active"><a href="#lA" data-toggle="tab"><i class="icon-book"></i> CSS &amp; JS</a></li>
 	          <li class=""><a href="#lB" data-toggle="tab"><i class="icon-pencil"></i> Meta </a></li>
 	          <li class=""><a href="#lC" data-toggle="tab"><i class="icon-cogs"></i> Other</a></li>
 	        </ul>
-				  <div class="tab-content">
+				  <div class="tab-content span10" style="margin: 0px;">
 	          <div class="tab-pane active" id="lA">
 	            <p>I'm in Section A.</p>
 	          </div>
 	          <div class="tab-pane" id="lB">
-	            <p>Howdy, I'm in Section B.</p>
+	          	<% if @page %>
+	            	<%= render 'pages/meta_form' %>
+	            <% else %>
+	            	<%= render 'sites/meta_form' %>
+	            <% end %>
 	          </div>
 	          <div class="tab-pane" id="lC">
-	            <p>What up girl, this is Section C.</p>
+	            <p>Hola, this is Section C.</p>
 	          </div>
 	        </div>
 				</div>
