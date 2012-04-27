@@ -18,13 +18,13 @@
     <%= f.hidden_field :position %>
   </div>
 
-  <div class="field">
-    <%= f.label :parent %>
-    <%= f.collection_select(:parent, @pages, :id, :title, :include_blank => true)%>
-  </div>
+
   <div class="field">
     <%= f.label :content %>
-    <%= f.text_area :content %>
+    <%= f.text_area :content, :style => "width: 100%" %>
+  </div>
+  <div class="field">
+    <%= f.collection_select(:parent, @pages, :id, :title, :include_blank => true)%>
   </div>
 
   <div class="actions">

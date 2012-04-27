@@ -19,7 +19,12 @@ class PagesController < ApplicationController
   # GET /pages/1.json
   def show
     @site = Site.find_by_subdomain!(request.subdomain)
-    @page = Page.find(params[:id])
+    if params[:id]
+      @page = @site.pages.find(params[:id])
+    else
+      @page = @site.pages.find(:first, :order => 'position ASC')
+    end
+
 
     respond_to do |format|
       format.html # show.html.erb
@@ -45,8 +50,13 @@ class PagesController < ApplicationController
   def edit
     @user = current_user
     @site = @user.sites.find_by_subdomain!(request.subdomain)
+    @sites = current_user.sites
     @pages = @site.pages.all
-    @page = @site.pages.find(params[:id])
+    if params[:id]
+      @page = @site.pages.find(params[:id])
+    else
+      @page = @site.pages.find(:first, :order => 'position ASC')
+    end
     @new_page = @site.pages.build
   end
 
@@ -55,11 +65,13 @@ class PagesController < ApplicationController
   def create
     @user = current_user
     @site = @user.sites.find_by_subdomain!(request.subdomain)
+
     if @site.pages.maximum('position').nil?
       params[:page][:position] = 1
     else
       params[:page][:position] = @site.pages.maximum('position') + 1
     end
+
     @page = @site.pages.build(params[:page])
 
     respond_to do |format|
@@ -94,8 +106,16 @@ class PagesController < ApplicationController
   # DELETE /pages/1
   # DELETE /pages/1.json
   def destroy
+    @user = current_user
+    @site = @user.sites.find_by_subdomain!(request.subdomain)
+
     @page = Page.find(params[:id])
     @page.destroy
+
+    @homepage = @site.pages.find(:first, :order => 'position ASC')
+    @homepage.position = 1
+    @homepage.save
+
 
     respond_to do |format|
       format.html { redirect_to edit_url }

@@ -15,12 +15,8 @@
     <%= f.hidden_field :title, :class => 'title' %>
   </div>
   <div class="field">
-    <%= f.label :robots %>
-    <%= f.text_area :robots, :rows => 5 %>
-  </div>
-  <div class="field">
-    <%= f.label :google_analytics %>
-    <%= f.text_area :google_analytics, :rows => 5 %>
+    <%= f.label :content %>
+    <%= f.text_area :content, :style => "width: 100%" %>
   </div>
   <div class="field">
     <%= f.collection_select(:layout_id, Layout.all, :id, :title)%>

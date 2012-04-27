@@ -1,7 +1,42 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><%= @site.seo_title %><% if !@page.nil? && @page.seo_title != "" %> | <%= @page.seo_title %><% end %></title>
+<meta content="<% if !@page.nil? && @page.seo_meta != "" %><%= @page.seo_meta %><% else %><%= @site.seo_meta %><% end %>" name="description">
+<meta content="<% if !@page.nil? && @page.seo_keywords != "" %><%= @page.seo_keywords %><% else %><%= @site.seo_keywords %><% end %>" name="keywords">
+<link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+<style>
+body {
+  padding-top: 60px;
+}
+.edit-buttons {
+	position: fixed;
+	bottom: 15px;
+	right: 15px;
+	background: #000;
+	color: #fff;
+	border-radius: 20px;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+}
+.edit-buttons a {
+	text-decoration: none;
+	color: #FFF;
+	padding: 10px 20px;
+	display: block;
+	border-radius: 20px;
+}
+</style>
+<link href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
+</head>
+
 <%= liquidize @current_site.layout.content, {
 	'page_content' => yield,
 	'site' => @site,
 	'page' => @page
 	}
 %>
+
+</html>

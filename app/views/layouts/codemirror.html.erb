@@ -91,7 +91,7 @@
 
 	<%= render 'layout_form' %>
 
-    <iframe id='preview'></iframe>
+    <iframe id='preview' src="<%= page_url(@page) %>"></iframe>
 
     <script type="text/javascript">
       var delay;
@@ -103,8 +103,8 @@
         lineNumbers: true,
         lineWrapping: true,
         onChange: function() {
-          clearTimeout(delay);
-          delay = setTimeout(updatePreview, 100);
+          //clearTimeout(delay);
+          //delay = setTimeout(updatePreview, 100);
         },
         onCursorActivity: function() {
 			    editor.setLineClass(hlLine, null);
@@ -123,12 +123,12 @@
         preview.close();
         // $('#preview').attr('src', $('#preview').attr('src'));
       }
-      setTimeout(updatePreview, 100);
+      //setTimeout(updatePreview, 100);
 
-			$('.CodeMirror-scroll').jScrollPane({
-			 autoReinitialise: true,
-			 mouseWheelSpeed: 100
-			});
+			// $('.CodeMirror-scroll').jScrollPane({
+			 // autoReinitialise: true,
+			 // mouseWheelSpeed: 100
+			// });
 
 			$("#save").click(function(){
 				$(".ctrl").submit();

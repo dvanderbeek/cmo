@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120425004701) do
+ActiveRecord::Schema.define(:version => 20120427163635) do
 
   create_table "friendly_id_slugs", :force => true do |t|
     t.string   "slug",                         :null => false
@@ -37,13 +37,13 @@ ActiveRecord::Schema.define(:version => 20120425004701) do
     t.string   "slug"
     t.integer  "position"
     t.integer  "parent"
-    t.text     "content"
+    t.text     "content",      :default => ""
     t.string   "seo_title"
     t.text     "seo_meta"
     t.text     "seo_keywords"
     t.integer  "site_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
   end
 
   add_index "pages", ["site_id"], :name => "index_pages_on_site_id"
@@ -56,10 +56,12 @@ ActiveRecord::Schema.define(:version => 20120425004701) do
     t.text     "seo_keywords"
     t.text     "robots"
     t.integer  "user_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
     t.integer  "layout_id"
     t.text     "google_analytics"
+    t.text     "content"
+    t.text     "custom_layout_content"
   end
 
   add_index "sites", ["user_id"], :name => "index_sites_on_user_id"

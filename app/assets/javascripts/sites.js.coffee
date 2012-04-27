@@ -4,7 +4,9 @@
 $(document).ready ->
 
 	$.ctrl('S', () =>
+		$('#saving-indicator').css('display', 'inline');
 		$(".ctrl").submit();
+		$('#saving-indicator').fadeOut('slow');
 	)
 
 # $(".sortable").sortable({items: "li:not(.ui-state-disabled)"});
@@ -12,8 +14,15 @@ $(document).ready ->
   $('.sortable').sortable
     axis: 'y'
     items: "li:not(.ui-state-disabled)"
+    placeholder: "drop-placeholder"
+    stop: ->
+    	$('#saving-indicator').css('display', 'inline').delay(500).fadeOut('slow')
     update: ->
-      $.post($(this).data('update-url'), $(this).sortable('serialize'))
+      $.post($(this).data('update-url'), $(this).sortable('serialize'), ->
+      	$('#saving-indicator').fadeOut('slow')
+      	$('li.page').children('a').children('i').removeClass('icon-home').addClass('icon-file')
+      	$('li.page:first').children('a').children('i').removeClass('icon-file').addClass('icon-home')
+      )
 
 	$('body').tooltip({
 	  selector: "a[rel=tooltip]",

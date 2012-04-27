@@ -1,0 +1,9 @@
+<% if current_user && current_user.id == @site.user_id %>
+	<div class="edit-buttons">
+		<% if @page %>
+			<%= link_to 'Edit', edit_page_path(@page) %>
+		<% else %>
+			<%= link_to 'Edit', edit_url %>
+		<% end %>
+	</div>
+<% end %>

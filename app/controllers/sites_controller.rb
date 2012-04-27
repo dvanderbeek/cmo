@@ -44,6 +44,7 @@ class SitesController < ApplicationController
     @site = @user.sites.find_by_subdomain!(request.subdomain)
     @pages = @site.pages.all
     @new_page = @site.pages.build
+    @sites = current_user.sites
 
     rescue ActiveRecord::RecordNotFound
       flash[:alert] = "You don't have a site with that subdomain!"
@@ -53,6 +54,7 @@ class SitesController < ApplicationController
   def edit_layout
     @user = current_user
     @site = @user.sites.find_by_subdomain!(request.subdomain)
+    @page = @site.pages.find(:first)
     @layout = @site.layout
     render :layout => 'codemirror'
 

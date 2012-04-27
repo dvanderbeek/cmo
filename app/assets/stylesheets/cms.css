@@ -68,7 +68,8 @@ input.large {
 	background: #222;
 	z-index: 100;
 }
-#side-nav-secondary {
+
+.side-nav-secondary {
 	position: fixed;
 	top: 0px;
 	height: 100%;
@@ -77,13 +78,22 @@ input.large {
 	background: #f1f1f1;
 	border-right: 1px solid #DDD;
 }
-#side-nav-secondary hr {
+.side-nav-secondary hr {
 	border-bottom: 1px solid #DDD;
 }
-#side-nav-secondary h4 {
+.side-nav-secondary h4 {
 	margin: 0px 0px 10px 15px;
+	text-shadow: 1px 1px 0 white;
+	color: #666;
 }
-
+.nav-list .drop-placeholder {
+	background: #E7E7E7;
+	height: 32px;
+}
+.nav-list .ui-sortable-helper {
+	-webkit-box-shadow: 0px 5px 15px -2px #888 ;
+	box-shadow: 0px 5px 15px -2px #888;
+}
 #canvas {
 	background: #FFF;
 	width: 100%;
@@ -91,6 +101,12 @@ input.large {
 }
 #canvas-padding {
 	padding: 30px 20px 20px 350px;
+}
+.nav-list {
+	padding: 0px;
+}
+.nav-list li {
+	padding: 0px 15px;
 }
 .nav-list .active > a, .nav-list .active > a:hover {
 	background: white;
@@ -112,8 +128,7 @@ input.large {
 	position: absolute;
 	padding: 0px;
 	top: 6px;
-	right: 14px;
-	float: right;
+	right: 29px;
 	color: rgba(0,0,0,0);
 }
 .nav-list li:hover a.close {
@@ -131,6 +146,7 @@ input.large {
 	height: 30px;
 	margin-bottom: 30px;
 	margin-right: 0px!important;
+	padding: 0px;
 }
 .nav-list-padded li a {
 	width: 100%;
@@ -143,6 +159,18 @@ input.large {
 }
 .icon-eye-lg:hover, .icon-eye-lg.active-lg  {
 	background: url('glyphicons/glyphicons_051_eye_open_white.png') no-repeat 50%;
+}
+.icon-power-lg {
+	background: url('glyphicons/glyphicons_063_power.png') no-repeat 50%;
+}
+.icon-power-lg:hover, .icon-power-lg.active-lg  {
+	background: url('glyphicons/glyphicons_063_power_white.png') no-repeat 50%;
+}
+.icon-group-lg {
+	background: url('glyphicons/glyphicons_043_group.png') no-repeat 50%;
+}
+.icon-group-lg:hover, .icon-power-lg.active-lg  {
+	background: url('glyphicons/glyphicons_043_group_white.png') no-repeat 50%;
 }
 .icon-lock-lg {
 	background: url('glyphicons/glyphicons_203_lock.png') no-repeat 50%;
@@ -273,6 +301,10 @@ border-right: 0px;
 .tabs-left .nav-tabs .active > a, .tabs-left .nav-tabs .active > a:hover {
 border-color: #f1f1f1 transparent #f1f1f1 #f1f1f1;
 }
+
+/********************************EDIT BUTTONS****************************/
+
+
 /********************************EDITING COLUMNS STYLES****************************/
 html {
 	overflow-y: scroll;

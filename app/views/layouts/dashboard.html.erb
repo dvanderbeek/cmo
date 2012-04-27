@@ -15,24 +15,28 @@
 		<div style="padding-top: 30px; text-align: center;">
 <!-- 		icons are adjusted to 55% lightness and then 95% again for the white ones	 -->
 			<ul class="nav nav-list nav-list-padded" style="padding: 0px;">
-				<li class="icon-pages-lg active-lg"><a rel="tooltip" data-original-title="Pages & Content" href="#"></a></li>
-				<li class="icon-cardio-lg"><a rel="tooltip" data-original-title="Activity & Comments" href="#"></a></li>
-				<li class="icon-usd-lg"><a rel="tooltip" data-original-title="Payments" href="#"></a></li>
-				<li class="icon-cogs-lg"><a rel="tooltip" data-original-title="Settings" href="#"></a></li>
-				<li class="icon-imac-lg"><%= link_to "", sites_url(subdomain: false), 'data-original-title' => "Your Sites", :rel => "tooltip"%></li>
+				<li class="icon-pages-lg active-lg link" id="pages"><a rel="tooltip" data-original-title="Pages & Content" href="#"></a></li>
+				<li class="icon-group-lg link"><a rel="tooltip" data-original-title="Users" href="#"></a></li>
+				<li class="icon-cardio-lg link"><a rel="tooltip" data-original-title="Activity & Comments" href="#"></a></li>
+				<li class="icon-usd-lg link"><a rel="tooltip" data-original-title="Payments" href="#"></a></li>
+				<li class="icon-cogs-lg link" id="settings"><a rel="tooltip" data-original-title="Settings" href="#"></a></li>
+
+				<li class="icon-imac-lg link" id="sites"><%= link_to "", '#', 'data-original-title' => "Your Sites", :rel => "tooltip"%></li>
+				<li class="icon-power-lg"><%= link_to "", destroy_user_session_url(subdomain: false), method: :delete, 'data-original-title' => "Sign Out", :rel => "tooltip" %></li>
 				<!-- <li class="icon-eye-lg"><a rel="tooltip" data-original-title="Preview" id="preview" href="#"></a></li> -->
 			</li>
     </div>
 	</div>
-	<div id="side-nav-secondary">
+	<div id="pages" class="side-nav-secondary">
 		<div style="padding-top: 30px;">
-			<h4>Pages</h4>
+			<h4><%= @site.title %></h4>
+			<!-- <h4>Pages</h4> -->
 			<ul class="nav nav-list sortable" data-update-url="<%= sort_pages_url %>">
-	      <li class="<%= @page.nil? ? 'active site-title' : 'site-title' %> ui-state-disabled"><%= link_to '<i class="icon-home"></i> '.html_safe+@site.title, edit_url, :class => 'site-title' %></li>
+	  <!--     <li class="<%= @page.nil? ? 'active site-title' : 'site-title' %> ui-state-disabled"><%= link_to '<i class="icon-home"></i> '.html_safe+@site.title, edit_url, :class => 'site-title' %></li> -->
 
 	      <% @pages.each do |page| %>
 				  <%= content_tag_for :li, page, :class => ((!@page.nil? && @page.id == page.id) ? 'active page-title' : ''), :style => "position: relative;"  do %>
-				  	<%= link_to '<i class="icon-file move"></i> '.html_safe+page.title, edit_page_path(page), :class => 'page-title' %>
+				  	<%= link_to ('<i class="' + ((page.position == 1) ? 'icon-home' : 'icon-file') + ' move"></i> ').html_safe+page.title, edit_page_path(page), :class => 'page-title' %>
 				  	<%= link_to('×', destroy_page_path(page), :method => 'delete', :confirm => "Are you sure?", :class => "close delete" ) %>
 				  <% end %>
 				<% end %>
@@ -49,9 +53,34 @@
 	    </ul>
     </div>
 	</div>
+
+	<div id="sites" class="side-nav-secondary" style="display: none;">
+		<div style="padding-top: 30px;">
+			<h4>Your Sites</h4>
+			<ul class="nav nav-list"">
+	      <% @sites.each do |site| %>
+				  <%= content_tag_for :li, site, :class => ((@site.id == site.id) ? 'active site-title' : 'site-title'), :style => "position: relative;"  do %>
+				  	<%= link_to '<i class="icon-home"></i> '.html_safe+site.title, edit_url(subdomain: site.subdomain), :class => ((@site.id == site.id) ? 'site-title' : '') %>
+				  	<%= link_to('×', site, :method => 'delete', :confirm => "Are you sure?", :class => "close delete" ) %>
+				  <% end %>
+				<% end %>
+	    </ul>
+    </div>
+	</div>
+	<div id="settings" class="side-nav-secondary" style="display: none;">
+		<div style="padding-top: 30px;">
+			<h4><%= @site.title %></h4>
+			<ul class="nav nav-list">
+	      <li style="position: relative;">
+			  	<a href="#"><i class="icon-wrench"></i> General</a>
+				 </li>
+	    </ul>
+    </div>
+	</div>
+
 	<div id="canvas">
 		<div id="canvas-padding">
-			<input type="text" value="<%= !@page.nil? ? @page.title : @site.title %>" id="<%= !@page.nil? ? 'page' : 'site' %>-title"/>
+			<input type="text" value="<%= !@page.nil? ? @page.title : @site.title %>" id="<%= !@page.nil? ? 'page' : 'site' %>-title"/><div style="position: relative; display: none; top: 8px;" id="saving-indicator">Saving...</div>
 			<i class="icon-cogs-lg pull-right" id="page-settings-toggle" style="width: 26px; height: 26px; margin-bottom: 5px; margin-left: 7px; cursor: pointer;"></i>
 			<%= link_to raw('<i class="icon-eye-lg pull-right" id="page-design-toggle" style="width: 31px; height: 26px; margin-bottom: 5px; margin-left: 7px; cursor: pointer;"></i>'), ( !@page.nil? ? page_url(@page) : root_url(subdomain: @site.subdomain) ) %>
 
@@ -59,12 +88,12 @@
 			<div class="clear"></div>
 			<div id="page-settings" class="row-fluid" style="border-top: 1px solid #f1f1f1; border-bottom: 1px solid #f1f1f1; display: none;">
 				<div class="tabbable tabs-left row-fluid">
-				  <ul class="nav nav-tabs span2" style="margin: 0px;">
-	          <li class="active"><a href="#lA" data-toggle="tab"><i class="icon-book"></i> CSS &amp; JS</a></li>
+				  <ul class="nav nav-tabs span3" style="margin: 0px;">
+	          <li class="active"><a href="#lA" data-toggle="tab" style='border-top: none;'><i class="icon-book"></i> CSS &amp; JS</a></li>
 	          <li class=""><a href="#lB" data-toggle="tab"><i class="icon-pencil"></i> Meta </a></li>
-	          <li class=""><a href="#lC" data-toggle="tab"><i class="icon-cogs"></i> Other</a></li>
+	          <li class=""><a href="#lC" data-toggle="tab"><i class="icon-search"></i> Search & Tracking</a></li>
 	        </ul>
-				  <div class="tab-content span10" style="margin: 0px;">
+				  <div class="tab-content span9" style="margin: 0px;">
 	          <div class="tab-pane active" id="lA">
 	            <p>I'm in Section A.</p>
 	          </div>
@@ -76,7 +105,7 @@
 	            <% end %>
 	          </div>
 	          <div class="tab-pane" id="lC">
-	            <p>Hola, this is Section C.</p>
+	            	<%= render 'sites/robots_form' %>
 	          </div>
 	        </div>
 				</div>
@@ -102,6 +131,15 @@
 			$(function(){
 				$("#page-settings-toggle").click(function(){
 					$("#page-settings").slideToggle('fast');
+				});
+
+				$('.link').click(function(){
+					var panel = $(this).attr('id');
+					$(this).siblings('li').removeClass('active-lg');
+					$(this).addClass('active-lg');
+					$(".side-nav-secondary").hide()
+					$(".side-nav-secondary#"+panel).show()
+					return false;
 				});
 
 				$("#preview").click(function(){

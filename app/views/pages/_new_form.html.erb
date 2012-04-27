@@ -25,10 +25,6 @@
 		    <%= f.label :parent %>
 		    <%= f.collection_select(:parent, @pages, :id, :title, :include_blank => true)%>
 		  </div>
-		  <div class="field">
-		    <%= f.label :content %>
-		    <%= f.text_area :content %>
-		  </div>
 
   </div>
   <div class="modal-footer">

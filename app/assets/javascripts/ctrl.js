@@ -13,7 +13,11 @@ $(function(){
 	$('#page-title').keyup(function(){
 		var title = $(this).val();
 		$('input.title').val(title);
-		$('li.page-title').children('a.page-title').html('<i class="icon-file move"></i> '+title);
+		if($('li.page-title').children('a.page-title').children('i').hasClass('icon-home')) {
+			$('li.page-title').children('a.page-title').html('<i class="icon-home move"></i> '+title);
+		} else {
+			$('li.page-title').children('a.page-title').html('<i class="icon-file move"></i> '+title);
+		}
 		$('input.title').parent('div').parent('form').submit();
 	});
 	$('#site-title').keyup(function(){

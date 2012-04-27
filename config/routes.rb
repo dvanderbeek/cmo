@@ -11,8 +11,8 @@ Cms::Application.routes.draw do
     # match '/' => 'sites#show'
     # match '/edit' => 'sites#edit'
   # end
-  match '', to: 'sites#show', constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
-  match '/edit', to: 'sites#edit', constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
+  match '', to: 'pages#show', constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
+  match '/edit', to: 'pages#edit', constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
   match '/edit_layout', to: 'sites#edit_layout', constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
   match '/update_layout.:id', to: 'sites#update_layout', constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }, :as => :layout
   get '/:id', to: 'pages#show', constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }, :as => :page

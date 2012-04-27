@@ -15,13 +15,15 @@
     <%= f.label :seo_title, "SEO Title" %>
     <%= f.text_field :seo_title %>
   </div>
-  <div class="field">
-    <%= f.label :seo_meta, "Meta Description" %>
-    <%= f.text_area :seo_meta, :rows => '5', :style => "width: 100%" %>
-  </div>
-  <div class="field">
-    <%= f.label :seo_keywords, "Meta Keywords" %>
-    <%= f.text_area :seo_keywords, :rows => '5', :style => "width: 100%" %>
+  <div class="row-fluid">
+	  <div class="span6">
+	    <%= f.label :seo_meta, "Meta Description" %>
+	    <%= f.text_area :seo_meta, :rows => '5', :style => "width: 100%" %>
+	  </div>
+	  <div class="span6">
+	    <%= f.label :seo_keywords, "Meta Keywords" %>
+	    <%= f.text_area :seo_keywords, :rows => '5', :style => "width: 100%" %>
+	  </div>
   </div>
 
 <% end %>

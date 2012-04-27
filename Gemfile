@@ -6,6 +6,7 @@ gem 'friendly_id'
 gem 'RedCloth'
 gem 'liquid'
 gem 'codemirror-rails'
+gem "paperclip", "~> 3.0"
 gem 'heroku'
 
 # Bundle edge Rails instead:
