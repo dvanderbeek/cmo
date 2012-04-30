@@ -1,0 +1,8 @@
+<!-- <%= content_tag_for :li, row, :class => "row-fluid", :style => "position: relative; list-style: none;" do %> -->
+<li class="row-fluid move" id="row_<%= row.id %>" style="position: relative; list-style: none;">
+	<ul class="row-fluid" style="margin: 0px;">
+		<%= render row.cols, :row => row %>
+	</ul>
+	<%= render "rows/edit_row", :row => row %>
+</li>
+<!-- <% end %> -->

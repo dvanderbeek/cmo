@@ -19,6 +19,7 @@ class SitesController < ApplicationController
   # GET /sites/1.json
   def show
     @site = Site.find_by_subdomain!(request.subdomain)
+    @stylesheets = @site.site_resources.where(:resource_type => "css")
 
     respond_to do |format|
       format.html # show.html.erb
@@ -31,6 +32,7 @@ class SitesController < ApplicationController
   def new
     @user = current_user
     @site = @user.sites.build
+    @page = @site.pages.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -44,7 +46,10 @@ class SitesController < ApplicationController
     @site = @user.sites.find_by_subdomain!(request.subdomain)
     @pages = @site.pages.all
     @new_page = @site.pages.build
-    @sites = current_user.sites
+    @sites = @user.sites.all
+    @site_resource = SiteResource.new
+    @site_resources = @site.site_resources
+    @new_site = @user.sites.build
 
     rescue ActiveRecord::RecordNotFound
       flash[:alert] = "You don't have a site with that subdomain!"
@@ -83,12 +88,14 @@ class SitesController < ApplicationController
   # POST /sites.json
   def create
     @user = current_user
-    @site = @user.sites.build(params[:site])
     params[:site][:subdomain] = params[:site][:subdomain].parameterize
+    @site = @user.sites.build(params[:site])
+    params[:page][:position] = 1
+    @page = @site.pages.build(params[:page])
 
     respond_to do |format|
       if @site.save
-        format.html { redirect_to root_url(subdomain: @site.subdomain), notice: 'Site was successfully created.' }
+        format.html { redirect_to edit_page_url(@page, subdomain: @site.subdomain), notice: 'Site was successfully created.' }
         format.json { render json: root_url(subdomain: @site.subdomain), status: :created, location: @site }
       else
         format.html { render action: "new" }
@@ -103,9 +110,13 @@ class SitesController < ApplicationController
     @user = current_user
     @site = @user.sites.find(params[:id])
 
+    if !params[:site][:subdomain].nil?
+      params[:site][:subdomain] = params[:site][:subdomain].parameterize
+    end
+
     respond_to do |format|
       if @site.update_attributes(params[:site])
-        format.html { redirect_to root_url(subdomain: @site.subdomain), notice: 'Site was successfully updated.' }
+        format.html { redirect_to edit_site_url(subdomain: @site.subdomain), notice: 'Site was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

@@ -5,7 +5,7 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-  <link rel="shortcut icon" href="favicon.png">
+  <link rel="shortcut icon" href="/favicon.png">
 </head>
 
 
@@ -29,7 +29,7 @@
 	</div>
 	<div id="pages" class="side-nav-secondary">
 		<div style="padding-top: 30px;">
-			<h4><%= @site.title %></h4>
+			<h4 class="site-title-preview"><%= @site.title %></h4>
 			<!-- <h4>Pages</h4> -->
 			<ul class="nav nav-list sortable" data-update-url="<%= sort_pages_url %>">
 	  <!--     <li class="<%= @page.nil? ? 'active site-title' : 'site-title' %> ui-state-disabled"><%= link_to '<i class="icon-home"></i> '.html_safe+@site.title, edit_url, :class => 'site-title' %></li> -->
@@ -64,6 +64,7 @@
 				  	<%= link_to('×', site, :method => 'delete', :confirm => "Are you sure?", :class => "close delete" ) %>
 				  <% end %>
 				<% end %>
+				<li class="ui-state-disabled"><a href="#add_site" data-toggle="modal" data-backdrop="true" data-keyboard="true" style="color: #333;"><i class="icon-plus"></i> Add a Site</a></li>
 	    </ul>
     </div>
 	</div>
@@ -72,8 +73,8 @@
 			<h4><%= @site.title %></h4>
 			<ul class="nav nav-list">
 	      <li style="position: relative;">
-			  	<a href="#"><i class="icon-wrench"></i> General</a>
-				 </li>
+	      	<%= link_to '<i class="icon-wrench"></i> General'.html_safe, edit_site_url(@site	) %>
+			  <!-- 	<a href="#"><i class="icon-wrench"></i> General</a> -->				 </li>
 	    </ul>
     </div>
 	</div>
@@ -95,7 +96,7 @@
 	        </ul>
 				  <div class="tab-content span9" style="margin: 0px;">
 	          <div class="tab-pane active" id="lA">
-	            <p>I'm in Section A.</p>
+	            <%= render 'site_resources/site_resources' %>
 	          </div>
 	          <div class="tab-pane" id="lB">
 	          	<% if @page %>
@@ -119,6 +120,8 @@
 	</div>
 
   <%= render "pages/new_form" %>
+  <%= render "sites/new_form" %>
+
 
     <!-- Le javascript
     ================================================== -->

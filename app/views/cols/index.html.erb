@@ -1,0 +1,27 @@
+<h1>Listing cols</h1>
+
+<table>
+  <tr>
+    <th>Row</th>
+    <th>Col width</th>
+    <th>Position</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @cols.each do |col| %>
+  <tr>
+    <td><%= col.row %></td>
+    <td><%= col.col_width %></td>
+    <td><%= col.position %></td>
+    <td><%= link_to 'Show', col %></td>
+    <td><%= link_to 'Edit', edit_col_path(col) %></td>
+    <td><%= link_to 'Destroy', col, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Col', new_col_path %>

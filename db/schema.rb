@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120427163635) do
+ActiveRecord::Schema.define(:version => 20120430020012) do
+
+  create_table "cols", :force => true do |t|
+    t.integer  "row_id"
+    t.integer  "col_width"
+    t.integer  "position"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "cols", ["row_id"], :name => "index_cols_on_row_id"
 
   create_table "friendly_id_slugs", :force => true do |t|
     t.string   "slug",                         :null => false
@@ -48,6 +58,43 @@ ActiveRecord::Schema.define(:version => 20120427163635) do
 
   add_index "pages", ["site_id"], :name => "index_pages_on_site_id"
 
+  create_table "rows", :force => true do |t|
+    t.integer  "page_id"
+    t.integer  "position"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "rows", ["page_id"], :name => "index_rows_on_page_id"
+
+  create_table "site_resources", :force => true do |t|
+    t.string   "name"
+    t.integer  "site_id"
+    t.string   "resource_type"
+    t.integer  "position"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+    t.string   "stylesheet_file_name"
+    t.string   "stylesheet_content_type"
+    t.integer  "stylesheet_file_size"
+    t.datetime "stylesheet_updated_at"
+    t.string   "javascript_file_name"
+    t.string   "javascript_content_type"
+    t.integer  "javascript_file_size"
+    t.datetime "javascript_updated_at"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.string   "resource_file_name"
+    t.string   "resource_content_type"
+    t.integer  "resource_file_size"
+    t.datetime "resource_updated_at"
+    t.string   "resource_url"
+  end
+
+  add_index "site_resources", ["site_id"], :name => "index_site_resources_on_site_id"
+
   create_table "sites", :force => true do |t|
     t.string   "title"
     t.string   "subdomain"
@@ -62,6 +109,10 @@ ActiveRecord::Schema.define(:version => 20120427163635) do
     t.text     "google_analytics"
     t.text     "content"
     t.text     "custom_layout_content"
+    t.string   "favicon_file_name"
+    t.string   "favicon_content_type"
+    t.integer  "favicon_file_size"
+    t.datetime "favicon_updated_at"
   end
 
   add_index "sites", ["user_id"], :name => "index_sites_on_user_id"
@@ -79,6 +130,10 @@ ActiveRecord::Schema.define(:version => 20120427163635) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

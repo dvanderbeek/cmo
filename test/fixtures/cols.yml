@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  row: 
+  col_width: 1
+  position: 1
+
+two:
+  row: 
+  col_width: 1
+  position: 1

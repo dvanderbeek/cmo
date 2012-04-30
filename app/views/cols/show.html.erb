@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Row:</b>
+  <%= @col.row %>
+</p>
+
+<p>
+  <b>Col width:</b>
+  <%= @col.col_width %>
+</p>
+
+<p>
+  <b>Position:</b>
+  <%= @col.position %>
+</p>
+
+
+<%= link_to 'Edit', edit_col_path(@col) %> |
+<%= link_to 'Back', cols_path %>

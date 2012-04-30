@@ -1,0 +1,2 @@
+module ColsHelper
+end

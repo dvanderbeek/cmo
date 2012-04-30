@@ -13,18 +13,23 @@ class PagesController < ApplicationController
       format.html # index.html.erb
       format.json { render json: @pages }
     end
+
   end
 
   # GET /pages/1
   # GET /pages/1.json
   def show
     @site = Site.find_by_subdomain!(request.subdomain)
+    @stylesheets = @site.site_resources.where(:resource_type => "css")
+    @javascripts = @site.site_resources.where(:resource_type => "js")
+
     if params[:id]
       @page = @site.pages.find(params[:id])
     else
       @page = @site.pages.find(:first, :order => 'position ASC')
     end
 
+    @col = Col.new
 
     respond_to do |format|
       format.html # show.html.erb
@@ -50,14 +55,28 @@ class PagesController < ApplicationController
   def edit
     @user = current_user
     @site = @user.sites.find_by_subdomain!(request.subdomain)
-    @sites = current_user.sites
+    @sites = @user.sites.all
     @pages = @site.pages.all
+    @site_resource = SiteResource.new
+    @site_resources = @site.site_resources
+
+    if params[:id]
+      @page = @site.pages.find(params[:id])
+    else
+      @page = @site.pages.find(:first, :order => 'position ASC')
+    end
+    @row = @page.rows.build
+    @col = @row.cols.build
+
     if params[:id]
       @page = @site.pages.find(params[:id])
     else
       @page = @site.pages.find(:first, :order => 'position ASC')
     end
     @new_page = @site.pages.build
+
+    @new_site = @user.sites.build
+
   end
 
   # POST /pages

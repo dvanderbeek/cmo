@@ -6,7 +6,6 @@
 <title><%= @site.seo_title %><% if !@page.nil? && @page.seo_title != "" %> | <%= @page.seo_title %><% end %></title>
 <meta content="<% if !@page.nil? && @page.seo_meta != "" %><%= @page.seo_meta %><% else %><%= @site.seo_meta %><% end %>" name="description">
 <meta content="<% if !@page.nil? && @page.seo_keywords != "" %><%= @page.seo_keywords %><% else %><%= @site.seo_keywords %><% end %>" name="keywords">
-<link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
 <style>
 body {
   padding-top: 60px;
@@ -29,7 +28,16 @@ body {
 	border-radius: 20px;
 }
 </style>
-<link href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
+
+<% @stylesheets.each do |stylesheet| %>
+  <% if stylesheet.resource_url == '' %>
+  	<link href="<%= stylesheet.resource.url %>" rel="stylesheet" type="text/css">
+  <% else %>
+  	<link href="<%= stylesheet.resource_url %>" rel="stylesheet" type="text/css">
+  <% end %>
+<% end %>
+
+<link rel="shortcut icon" href="<%= @site.favicon.url(:icon) %>">
 </head>
 
 <%= liquidize @current_site.layout.content, {
@@ -39,4 +47,13 @@ body {
 	}
 %>
 
+<% @javascripts.each do |js| %>
+	<% if js.resource_url == '' %>
+		<script src="<%= js.resource.url %>" type="text/javascript"></script>
+	<% else %>
+		<script src="<%= js.resource_url %>" type="text/javascript"></script>
+	<% end %>
+<% end %>
+
+</body>
 </html>

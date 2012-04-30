@@ -1,0 +1,11 @@
+
+<% unless params[:action] == "show" %>
+	<br />
+
+	<%= form_for(Col.new, :remote => true) do |f| %>
+		<%= f.hidden_field :row_id, :value => row.id %>
+		<%= f.submit "+", :class => "btn btn-mini row-controls", :style => "position: absolute; top: 0px; left: 0px;" %>
+	<% end %>
+
+	<%= link_to('×', row, :method => 'delete', :confirm => "Are you sure?", :class => "close delete", :style => "position: absolute; right: 0px; top: 0px;" ) %>
+<%end%>

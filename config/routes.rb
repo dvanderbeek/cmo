@@ -1,8 +1,16 @@
 Cms::Application.routes.draw do
+  resources :cols
+
+  resources :rows
+
+  resources :site_resources
+
   devise_for :users
   resources :sites
   resources :pages
   post 'pages/sort', :as => :sort_pages
+  post 'site_resources/sort', :as => :sort_site_resources
+  post 'rows/sort', :as => :sort_rows
   match 'robots.txt' => 'sites#robots'
 
 

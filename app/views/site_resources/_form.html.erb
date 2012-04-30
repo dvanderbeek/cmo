@@ -1,0 +1,38 @@
+<%= form_for(@site_resource, :html => {:multipart => true}) do |f| %>
+  <% if @site_resource.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@site_resource.errors.count, "error") %> prohibited this site_resource from being saved:</h2>
+
+      <ul>
+      <% @site_resource.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	<div class="field" style="float: left;">
+    <%= f.label :resource_type %>
+    <%= f.select(
+    			:resource_type,
+    			options_for_select(
+    				[["CSS", 'css'], ["Javascript", 'js'],["File", 'file']],
+    				@site_resource.resource_type
+    			),
+    			{},
+    			:class => "span2"
+    		)
+    %>
+  </div>
+	<div class="field" style="float: left; margin-left: 10px;">
+    <%= f.label :resource_url, "URL" %>
+    <%= f.text_field :resource_url, :class => "span2" %>
+  </div>
+  <div class="field" style="float: left; margin-left: 10px;">
+    <%= f.label "or " %>
+    <%= f.file_field :resource, :class => "span2" %>
+  </div>
+  <div class="actions" style="float: left; margin-left: 10px;">
+    <%= f.submit :value => "+", :class => "btn btn-primary", :style => "margin-top: 22px;" %>
+  </div>
+<% end %>

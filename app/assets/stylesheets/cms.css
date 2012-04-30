@@ -208,7 +208,12 @@ li.icon-cardio-lg {
 .icon-usd-lg:hover, .icon-usd-lg.active-lg  {
 	background: url('glyphicons/glyphicons_227_usd_white.png') no-repeat 50%;
 }
-
+.row-controls {
+	opacity: 0;
+}
+.row-controls:hover {
+	opacity: 1;
+}
 
 
 .show-grid {

@@ -1,0 +1,24 @@
+<div style="width: 560px;">
+
+<%= render 'site_resources/form' %>
+
+<div style="clear: both;"></div>
+
+<ul id="site_resources" class="nav nav-list" data-update-url="<%= sort_site_resources_url %>">
+<% @site_resources.each do |resource| %>
+	<% if resource.resource_url == '' %>
+	  <%= content_tag_for :li, resource, :style => "position: relative;" do %>
+	    <%= link_to raw('<i class="icon-file move"></i> ')+resource.resource_file_name, resource.resource.url %>
+	    <%= link_to '×', resource, confirm: 'Are you sure?', method: :delete, :class => "close delete" %>
+	  <% end %>
+	<% else %>
+		<%= content_tag_for :li, resource, :style => "position: relative;" do %>
+	    <%= link_to raw('<i class="icon-file move"></i> ')+resource.resource_url, resource.resource_url %>
+	    <%= link_to '×', resource, confirm: 'Are you sure?', method: :delete, :class => "close delete" %>
+	  <% end %>
+  <% end %>
+<% end %>
+</ul>
+</div>
+
+

@@ -1,0 +1,25 @@
+<%= form_for(@col) do |f| %>
+  <% if @col.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@col.errors.count, "error") %> prohibited this col from being saved:</h2>
+
+      <ul>
+      <% @col.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :col_width %><br />
+    <%= f.number_field :col_width %>
+  </div>
+  <div class="field">
+    <%= f.label :position %><br />
+    <%= f.number_field :position %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

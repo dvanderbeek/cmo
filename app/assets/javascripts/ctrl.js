@@ -23,8 +23,8 @@ $(function(){
 	$('#site-title').keyup(function(){
 		var title = $(this).val();
 		$('input.title').val(title);
-		$('li.site-title').children('a.site-title').html('<i class="icon-home move"></i> '+title);
-		$('input.title').parent('div').parent('form').submit();
+		$('.site-title-preview').html(title);
+
 	});
 
 });
