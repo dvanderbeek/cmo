@@ -1,0 +1,6 @@
+<%= form_for(Block.new, :remote => true) do |f| %>
+	<%= f.hidden_field :col_id, :value => col.id %>
+	<%= f.submit raw("&plus;"), :class => "add-block btn btn-mini btn-col" %>
+<% end %>
+
+<%= link_to(raw('&minus;'), col, :method => 'delete', :remote => true, :class => "delete-col btn btn-mini btn-danger btn-col") %>

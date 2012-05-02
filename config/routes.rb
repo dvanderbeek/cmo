@@ -1,4 +1,6 @@
 Cms::Application.routes.draw do
+  resources :blocks
+
   resources :cols
 
   resources :rows

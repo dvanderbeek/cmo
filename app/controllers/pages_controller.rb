@@ -19,6 +19,7 @@ class PagesController < ApplicationController
   # GET /pages/1
   # GET /pages/1.json
   def show
+    @user = current_user
     @site = Site.find_by_subdomain!(request.subdomain)
     @stylesheets = @site.site_resources.where(:resource_type => "css")
     @javascripts = @site.site_resources.where(:resource_type => "js")
@@ -84,12 +85,6 @@ class PagesController < ApplicationController
   def create
     @user = current_user
     @site = @user.sites.find_by_subdomain!(request.subdomain)
-
-    if @site.pages.maximum('position').nil?
-      params[:page][:position] = 1
-    else
-      params[:page][:position] = @site.pages.maximum('position') + 1
-    end
 
     @page = @site.pages.build(params[:page])
 

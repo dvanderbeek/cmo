@@ -1,0 +1,12 @@
+<li class="block" id="block_<%= block.id %>" style="list-style: none;">
+	<% if params[:action] != "show" %>
+		<div class="block-overlay">
+	    <div style="padding-top: 7px;">
+	      EDIT | <%= link_to(raw('DELETE'), block, :method => 'delete', :remote => true) %>
+	    </div>
+	  </div>
+	<% end %>
+	<div class='aloha' data-id="<%= block.id %>" data-update-url="<%= block_url(block) %>">
+		<%= raw block.content %>
+	</div>
+</li>

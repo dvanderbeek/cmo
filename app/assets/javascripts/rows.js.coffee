@@ -4,5 +4,6 @@
 jQuery ->
   $('#rows').sortable
     axis: 'y'
+    handle: '.drag'
     update: ->
       $.post($(this).data('update-url'), $(this).sortable('serialize'))

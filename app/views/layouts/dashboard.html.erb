@@ -3,7 +3,9 @@
 <head>
   <title>Condo Motion</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag 'aloha/css/aloha.css' %>
   <%= javascript_include_tag "application" %>
+  <%= aloha! %>
   <%= csrf_meta_tags %>
   <link rel="shortcut icon" href="/favicon.png">
 </head>
@@ -129,8 +131,8 @@
 
 </head>
 
-    <script src="../../assets/js/editor.js"></script>
 		<script type="text/javascript">
+
 			$(function(){
 				$("#page-settings-toggle").click(function(){
 					$("#page-settings").slideToggle('fast');

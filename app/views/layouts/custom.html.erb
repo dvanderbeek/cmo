@@ -3,9 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title><%= @site.seo_title %><% if !@page.nil? && @page.seo_title != "" %> | <%= @page.seo_title %><% end %></title>
-<meta content="<% if !@page.nil? && @page.seo_meta != "" %><%= @page.seo_meta %><% else %><%= @site.seo_meta %><% end %>" name="description">
-<meta content="<% if !@page.nil? && @page.seo_keywords != "" %><%= @page.seo_keywords %><% else %><%= @site.seo_keywords %><% end %>" name="keywords">
+<!-- <title><%= @site.seo_title %><% if !@page.nil? && @page.seo_title != "" %> | <%= @page.seo_title %><% end %></title> -->
+<title><%= seo_title(@page) %></title>
+<meta content="<%= meta_description(@page) %>" name="description">
+<meta content="<%= meta_keywords(@page) %>" name="keywords">
 <style>
 body {
   padding-top: 60px;
@@ -30,11 +31,7 @@ body {
 </style>
 
 <% @stylesheets.each do |stylesheet| %>
-  <% if stylesheet.resource_url == '' %>
-  	<link href="<%= stylesheet.resource.url %>" rel="stylesheet" type="text/css">
-  <% else %>
-  	<link href="<%= stylesheet.resource_url %>" rel="stylesheet" type="text/css">
-  <% end %>
+  	<link href="<%= (stylesheet.resource_url == '') ? stylesheet.resource.url : stylesheet.resource_url %>" rel="stylesheet" type="text/css">
 <% end %>
 
 <link rel="shortcut icon" href="<%= @site.favicon.url(:icon) %>">
@@ -43,16 +40,13 @@ body {
 <%= liquidize @current_site.layout.content, {
 	'page_content' => yield,
 	'site' => @site,
-	'page' => @page
+	'page' => @page,
+	'user' => @user
 	}
 %>
 
 <% @javascripts.each do |js| %>
-	<% if js.resource_url == '' %>
-		<script src="<%= js.resource.url %>" type="text/javascript"></script>
-	<% else %>
-		<script src="<%= js.resource_url %>" type="text/javascript"></script>
-	<% end %>
+		<script src="<%= (js.resource_url == '') ? js.resource.url : js.resource_url %>" type="text/javascript"></script>
 <% end %>
 
 </body>

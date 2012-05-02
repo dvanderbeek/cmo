@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120430020012) do
+ActiveRecord::Schema.define(:version => 20120430214527) do
+
+  create_table "blocks", :force => true do |t|
+    t.integer  "col_id"
+    t.text     "content"
+    t.integer  "position"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "blocks", ["col_id"], :name => "index_blocks_on_col_id"
 
   create_table "cols", :force => true do |t|
     t.integer  "row_id"

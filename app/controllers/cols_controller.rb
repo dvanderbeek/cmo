@@ -44,13 +44,7 @@ class ColsController < ApplicationController
     @row = Row.find(params[:col][:row_id])
 
     if @row.cols.count < 12
-      @page = Page.find(@row.page_id)
-
-      if @row.cols.maximum('position').nil?
-        params[:col][:position] = 1
-      else
-        params[:col][:position] = @row.cols.maximum('position') + 1
-      end
+      @page = @row.page
       @col = @row.cols.build(params[:col])
 
       respond_to do |format|
@@ -89,9 +83,11 @@ class ColsController < ApplicationController
   def destroy
     @col = Col.find(params[:id])
     @col.destroy
+    @page = @col.row.page
 
     respond_to do |format|
       format.html { redirect_to :back }
+      format.js
       format.json { head :no_content }
     end
   end

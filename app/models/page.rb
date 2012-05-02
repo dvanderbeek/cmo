@@ -4,6 +4,6 @@ class Page < ActiveRecord::Base
   belongs_to :site
   has_many :rows, :order => "position", :dependent => :destroy
 
-  #acts_as_list
+  acts_as_list :scope => :site
   liquid_methods :title, :slug, :seo_title
 end

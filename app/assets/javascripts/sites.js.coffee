@@ -3,13 +3,6 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $(document).ready ->
 
-	$.ctrl('S', () =>
-		$('#saving-indicator').css('display', 'inline');
-		$(".ctrl").submit();
-		$('#saving-indicator').fadeOut('slow');
-	)
-
-# $(".sortable").sortable({items: "li:not(.ui-state-disabled)"});
 	jQuery ->
   $('.sortable').sortable
     axis: 'y'

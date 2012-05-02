@@ -8,6 +8,8 @@ gem 'liquid'
 gem 'codemirror-rails'
 gem "paperclip", "~> 3.0"
 gem 'heroku'
+gem 'aloha-rails'
+gem 'acts_as_list'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

@@ -1,8 +1,8 @@
-<li class="span<%= 12/row.cols.count %>" style="position: relative; min-height: 30px; list-style:none;">
-
-	<% unless params[:action] == "show" %>
-		Column
-		<%= link_to('×', col, :method => 'delete', :confirm => "Are you sure?", :class => "close delete", :style => "position: absolute; right: 15px; top: 0px; color: red;" ) %>
+<li id="col_<%= col.id %>" class="span<%= 12/row.cols.count %> col" style="position: relative; min-height: 60px; list-style:none;">
+	<ul class="blocks">
+		<%= render col.blocks, :col => col %>
+	</ul>
+	<% if params[:action] != "show" %>
+		<%= render 'cols/edit_col', :col => col %>
 	<% end %>
-
 </li>

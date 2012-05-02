@@ -3,12 +3,6 @@ class RowsController < ApplicationController
   # POST /rows.json
   def create
     @page = Page.find(params[:row][:page_id])
-    if @page.rows.maximum('position').nil?
-      params[:row][:position] = 1
-    else
-      params[:row][:position] = @page.rows.maximum('position') + 1
-    end
-
     @row = Row.new(params[:row])
     @col = @row.cols.build(:col_width => 12, :position => 1)
 
@@ -32,6 +26,7 @@ class RowsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to :back }
+      format.js
       format.json { head :no_content }
     end
   end

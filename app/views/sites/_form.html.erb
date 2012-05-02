@@ -19,7 +19,9 @@
     <%= f.collection_select(:layout_id, Layout.all, :id, :title)%>
   </div>
 
+
   <%= f.label :favicon %>
+  <%= image_tag(@site.favicon.url(:icon), :style => "float: left; margin-right: 7px; margin-top: 6px;")%>
   <%= f.file_field :favicon %>
 
 

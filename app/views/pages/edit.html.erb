@@ -1,5 +1,5 @@
-<ul id="rows" data-update-url="<%= sort_rows_url %>" style="margin: 0px 0px 20px 0px;">
-<%= render @page.rows %>
+<ul id="rows" data-update-url="<%= sort_rows_url %>" style="margin: 0px;">
+	<%= render @page.rows %>
 </ul>
 
 <%= form_for(@row, :remote => true) do |f| %>
@@ -19,7 +19,108 @@
   <%= f.hidden_field :position %>
 
   <div class="actions">
-    <%= f.submit "+ Row", :class => "btn", :id => "add-row" %>
+    <%= f.submit "+ Row", :class => "btn btn-mini", :id => "add-row" %>
   </div>
 <% end %>
 
+<% unless params[:action] == "show" %>
+	<style>
+		.row-tools {
+		    position: absolute;
+		    top: 0px;
+		    right: -20px;
+		    width: 20px;
+		    height: 100%;
+		    opacity: 0.2;
+		}
+		.row-tools .btn {
+		    margin-top: -2px;
+		}
+		.row-tools:hover {
+		    opacity: 1;
+		}
+
+
+		.sort-row {
+		    border-top-left-radius: 0px;
+		    border-bottom-left-radius: 0px;
+		    border-bottom-right-radius: 0px;
+		    padding: 2px;
+		    cursor: move;
+		}
+		.delete-row {
+		    border-top-right-radius: 0px;
+		    border-top-left-radius: 0px;
+		    border-bottom-left-radius: 0px;
+		}
+		.add-col {
+		    border-top-right-radius: 0px;
+		    border-top-left-radius: 0px;
+		    border-bottom-left-radius: 0px;
+		    border-bottom-right-radius: 0px;
+		}
+
+		.block:hover {
+			background: whitesmoke;
+			cursor: move;
+		}
+		.block { height: 100%; }
+
+		.col .btn-col { display: none; }
+		.col:hover .btn-col { display: block; z-index: 100; }
+		.delete-col {
+		    position: absolute;
+		    top: 0px;
+		    right: 0px;
+		    border-top-right-radius: 0px;
+		    border-bottom-right-radius: 0px;
+		    border-top-left-radius: 0px;
+		}
+		.add-block {
+		    position: absolute;
+		    bottom: 0px;
+		    right: 0px;
+		    border-top-right-radius: 0px;
+		    border-bottom-right-radius: 0px;
+		    border-bottom-left-radius: 0px;
+		}
+
+		.block-overlay {
+		    position: absolute;
+		    top: 0px;
+		    left: 0px;
+		    width: 100%;
+		    height: 100%;
+		    background: rgba(0,0,0,0.3);
+		    cursor: move;
+		    color: white;
+		    text-align: center;
+		    display: none;
+		}
+		.block-selected .block-overlay {
+		    display: block;
+		}
+		.block-selected, .block-overlay {
+		    -webkit-touch-callout: none;
+		    -webkit-user-select: none;
+		    -khtml-user-select: none;
+		    -moz-user-select: none;
+		    -ms-user-select: none;
+		    user-select: none;
+		}
+		.aloha { cursor: auto;}
+	</style>
+<!-- 	<script type="text/javascript">
+	$(function(){
+		$('.block').live('click', function(){
+		    if($(this).hasClass('block-selected')) {
+		        $('.block').removeClass('block-selected');
+		    } else {
+		        $('.block').removeClass('block-selected');
+		        $(this).addClass('block-selected');
+		    }
+		});
+	});
+	</script> -->
+
+<% end %>
