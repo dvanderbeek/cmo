@@ -13,6 +13,8 @@ Cms::Application.routes.draw do
   post 'pages/sort', :as => :sort_pages
   post 'site_resources/sort', :as => :sort_site_resources
   post 'rows/sort', :as => :sort_rows
+  post 'blocks/update_all', :as => :update_all_blocks
+  post 'blocks/sort', :as => :sort_blocks
   match 'robots.txt' => 'sites#robots'
 
 

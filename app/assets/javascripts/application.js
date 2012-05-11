@@ -12,6 +12,5 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require aloha-config
 //= require jquery-ui
 //= require_tree .

@@ -1,5 +1,5 @@
-<li id="col_<%= col.id %>" class="span<%= 12/row.cols.count %> col" style="position: relative; min-height: 60px; list-style:none;">
-	<ul class="blocks">
+<li id="<%= col.id %>" data-delete-url="/cols/<%= col.id %>" class="span<%= 12/row.cols.count %> col" style="position: relative; min-height: 60px; list-style:none;">
+	<ul class="blocks" style="overflow: visible;" data-update-url="<%= sort_blocks_path %>">
 		<%= render col.blocks, :col => col %>
 	</ul>
 	<% if params[:action] != "show" %>

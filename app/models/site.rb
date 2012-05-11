@@ -7,5 +7,5 @@ class Site < ActiveRecord::Base
   liquid_methods :title, :subdomain, :seo_title, :seo_meta, :seo_keywords, :pages, :google_analytics
 
   has_attached_file :favicon, :styles => { :icon => "16x16>" }
-  accepts_nested_attributes_for :pages
+
 end

@@ -30,7 +30,7 @@ body {
 }
 </style>
 
-<% @stylesheets.each do |stylesheet| %>
+<% @site.site_resources.css.each do |stylesheet| %>
   	<link href="<%= (stylesheet.resource_url == '') ? stylesheet.resource.url : stylesheet.resource_url %>" rel="stylesheet" type="text/css">
 <% end %>
 
@@ -45,7 +45,7 @@ body {
 	}
 %>
 
-<% @javascripts.each do |js| %>
+<% @site.site_resources.js.each do |js| %>
 		<script src="<%= (js.resource_url == '') ? js.resource.url : js.resource_url %>" type="text/javascript"></script>
 <% end %>
 

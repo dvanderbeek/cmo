@@ -1,6 +1,8 @@
-<li class="row-fluid" id="row_<%= row.id %>" style="position: relative; list-style: none; min-height: 60px;">
-	<ul class="row-fluid" style="margin: 0px;">
-		<%= render row.cols, :row => row %>
-	</ul>
-	<%= render "rows/edit_row", :row => row %>
-</li>
+<!-- <% unless row.blocks.count == 0 %> -->
+	<li class="row-fluid" id="row_<%= row.id %>" style="position: relative; list-style: none; min-height: 60px;">
+		<ul class="row-fluid" style="margin: 0px;">
+			<%= render row.cols, :row => row %>
+		</ul>
+		<%= render "rows/edit_row", :row => row %>
+	</li>
+<!-- <%end%> -->

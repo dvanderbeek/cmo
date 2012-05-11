@@ -100,9 +100,9 @@ class SiteResourcesController < ApplicationController
   end
 
   def sort
-  params[:site_resource].each_with_index do |id, index|
-    SiteResource.update_all({position: index+1}, {id: id})
+    params[:site_resource].each_with_index do |id, index|
+      SiteResource.update_all({position: index+1}, {id: id})
+    end
+    render nothing: true
   end
-  render nothing: true
-end
 end

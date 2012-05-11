@@ -21,8 +21,6 @@ class PagesController < ApplicationController
   def show
     @user = current_user
     @site = Site.find_by_subdomain!(request.subdomain)
-    @stylesheets = @site.site_resources.where(:resource_type => "css")
-    @javascripts = @site.site_resources.where(:resource_type => "js")
 
     if params[:id]
       @page = @site.pages.find(params[:id])
@@ -75,7 +73,6 @@ class PagesController < ApplicationController
       @page = @site.pages.find(:first, :order => 'position ASC')
     end
     @new_page = @site.pages.build
-
     @new_site = @user.sites.build
 
   end

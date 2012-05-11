@@ -4,7 +4,8 @@ class RowsController < ApplicationController
   def create
     @page = Page.find(params[:row][:page_id])
     @row = Row.new(params[:row])
-    @col = @row.cols.build(:col_width => 12, :position => 1)
+    @col = @row.cols.build(:col_width => 12)
+    @block = @col.blocks.build
 
     respond_to do |format|
       if @row.save

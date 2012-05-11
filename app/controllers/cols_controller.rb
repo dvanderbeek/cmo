@@ -46,11 +46,12 @@ class ColsController < ApplicationController
     if @row.cols.count < 12
       @page = @row.page
       @col = @row.cols.build(params[:col])
+      @block = @col.blocks.build
 
       respond_to do |format|
         if @col.save
           format.html { redirect_to @col, notice: 'Col was successfully created.' }
-          format.js
+          format.js   { render 'rows/create.js' }
           format.json { render json: @col, status: :created, location: @col }
         else
           format.html { render action: "new" }

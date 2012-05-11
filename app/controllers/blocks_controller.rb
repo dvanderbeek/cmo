@@ -53,7 +53,7 @@ class BlocksController < ApplicationController
     respond_to do |format|
       if @block.save
         format.html { redirect_to @block, notice: 'Block was successfully created.' }
-        format.js
+        format.js   { render 'rows/create.js' }
         format.json { render json: @block, status: :created, location: @block }
       else
         format.html { render action: "new" }
@@ -71,7 +71,7 @@ class BlocksController < ApplicationController
     respond_to do |format|
       if @block.update_attributes(params[:block])
         format.html { redirect_to @block, notice: 'Block was successfully updated.' }
-        format.js
+        format.js   { render 'rows/create.js' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -80,16 +80,45 @@ class BlocksController < ApplicationController
     end
   end
 
+  def update_all
+    params.each do |id, content|
+      Block.update_all({content: content}, {id: id})
+    end
+    render nothing: true
+  end
+
   # DELETE /blocks/1
   # DELETE /blocks/1.json
   def destroy
     @block = Block.find(params[:id])
+    @page = @block.col.row.page
     @block.destroy
 
     respond_to do |format|
-      format.html { redirect_to blocks_url }
-      format.js
       format.json { head :no_content }
     end
+  end
+
+  def sort
+    if !params[:block].nil?
+      params[:block].each_with_index do |id, index|
+        Block.update_all({position: index+1, col_id: params[:col]}, {id: id})
+      end
+    end
+
+    @col = Col.find(params[:col][0])
+    @page = @col.row.page
+
+    Col.not_parent.each do |col|
+      col.destroy
+    end
+    Row.not_parent.each do |row|
+      row.destroy
+    end
+
+    respond_to do |format|
+      format.js   { render 'rows/create.js' }
+    end
+
   end
 end

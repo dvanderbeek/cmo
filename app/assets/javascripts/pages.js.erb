@@ -1,0 +1,82 @@
+$(function(){
+	var area = new nicEditor({
+		iconsPath: "<%= asset_path('wysiwyg/nicEditIcons-latest.png') %>",
+    buttonList : [
+  		//'xhtml',
+      'bold',
+      'italic',
+      'underline',
+      //'subscript',
+			//'superscript',
+			//'strikethrough',
+      'forecolor',
+      //'bgcolor',
+      'left',
+      'center',
+      'right',
+      'justify',
+      'indent',
+      'outdent',
+      'ol',
+      'ul',
+      'link',
+      'unlink',
+      'hr',
+      'image',
+      //'upload',
+      'removeformat',
+      'fontFormat',
+      //'fontSize',
+      'fontFamily'
+    ]});
+    $('.block').each(function(){
+      var id = $(this).attr('id');
+      area.panelInstance(id);
+    });
+
+    $('.block').live('click', function(){
+      $('.nicEdit-panel').hide();
+      $(this).prev('div').children('.nicEdit-panelContain').children('.nicEdit-panel').addClass('open').show();
+    });
+
+    $(document).live('click', function(e) {
+        var target = e.target;
+
+        if (
+            !$(target).is('.block')
+            && !$(target).parents().is('.block')
+            && !$(target).is('.nicEdit-panel')
+            && !$(target).parents().is('.nicEdit-panel')
+            && !$(target).is('.nicEdit-pane')
+            && !$(target).parents().is('.nicEdit-pane')
+        ) {
+            $('.nicEdit-panel').hide();
+        }
+    });
+
+    $.ctrl('S', function(){
+			$('#saving-indicator').css('display', 'inline');
+			$(".ctrl").submit();
+			$('#saving-indicator').fadeOut('slow');
+		});
+
+		$('.nicEdit-panelContain').parent().css('width', '600px');
+		//find dist from edge of each block to right side of window.  if < 600px, set the above element to position absolute and right -67px (changes depending on how wide editor is)
+		$('.block').each(function(){
+	    var dRight = $(window).width() - $(this).offset().left - $(document).scrollLeft();
+	    if( dRight < $(this).prev('div').width() ) {
+	    	$(this).prev('div').css('position','absolute').css('right', '-67px');
+	    }
+		});
+
+		$('.delete-block').live('click', function(){
+			var url = $(this).parent('ul').parent('.wysiwyg').parent('.block').data('delete-url');
+			$.ajax({
+			  type: "DELETE",
+			  url: url,
+			  context: $(this).parent('ul').parent('.wysiwyg').parent('.block')
+			}).done(function(e){
+				$(this).remove();
+			});
+		});
+});

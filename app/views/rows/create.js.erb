@@ -1,2 +1,64 @@
 $("#rows").html("<%= escape_javascript(render(@page.rows)) %>");
-Aloha.jQuery('.aloha').aloha();
+$('.blocks').sortable({
+	connectWith: '.blocks',
+	cancel: '.aloha',
+	revert: true,
+	opacity: 0.4,
+	helper: 'clone',
+	forceHelperSize: true,
+	dropOnEmpty: true,
+	scroll: false,
+	handle: '.handle',
+	tolerance: 'pointer',
+	placeholder: "block-sort-placeholder",
+	update: function() {
+    var col, data, url;
+    url = $(this).data('update-url');
+    col = $(this).parent('.col').attr('id');
+    data = "col[]=" + col + "&" + $(this).sortable('serialize');
+    return $.post(url, data);
+  }
+});
+var area = new nicEditor({
+		iconsPath: "<%= asset_path('wysiwyg/nicEditIcons-latest.png') %>",
+    buttonList : [
+  		//'xhtml',
+      'bold',
+      'italic',
+      'underline',
+      //'subscript',
+			//'superscript',
+			//'strikethrough',
+      'forecolor',
+      //'bgcolor',
+      'left',
+      'center',
+      'right',
+      'justify',
+      'indent',
+      'outdent',
+      'ol',
+      'ul',
+      'link',
+      'unlink',
+      'hr',
+      'image',
+      //'upload',
+      'removeformat',
+      'fontFormat',
+      //'fontSize',
+      'fontFamily'
+    ]});
+    $('.block').each(function(){
+      var id = $(this).attr('id');
+      area.panelInstance(id);
+    });
+
+		$('.nicEdit-panelContain').parent().css('width', '600px');
+		//find dist from edge of each block to right side of window.  if < 600px, set the above element to position absolute and right -67px (changes depending on how wide editor is)
+		$('.block').each(function(){
+	    var dRight = $(window).width() - $(this).offset().left - $(document).scrollLeft();
+	    if( dRight < $(this).prev('div').width() ) {
+	    	$(this).prev('div').css('position','absolute').css('right', '-67px');
+	    }
+		});

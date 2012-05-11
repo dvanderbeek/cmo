@@ -3,9 +3,8 @@
 <head>
   <title>Condo Motion</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= stylesheet_link_tag 'aloha/css/aloha.css' %>
   <%= javascript_include_tag "application" %>
-  <%= aloha! %>
+
   <%= csrf_meta_tags %>
   <link rel="shortcut icon" href="/favicon.png">
 </head>
@@ -158,49 +157,5 @@
 				});
 			});
 		</script>
-<!-- 		<script type="text/javascript">
-			Aloha.ready( function() {
-				Aloha.settings.floatingmenu = {
-					width: 630, // with of the floating menu; auto calculated when not set
-			    behaviour: 'topalign', // 'float' (default), 'topalign', 'append'
-			    draggable: false, // boolean
-			    marginTop: 10, // number in px
-			    horizontalOffset: 0, // number in px -- used with 'topalign' behaviour
-			    topalignOffset: 0 // number in px -- used with 'topalign' behaviour
-				};
-        // Make #content editable once Aloha is loaded and ready.
-				Aloha.jQuery('.aloha').aloha({
-					settings: {
-						floatingmenu: {
-							behaviour: 'topalign',
-							draggable: false
-						},
-						toolbar: {
-							tabs : {
-				        // will generate a tab labeled "formatting"
-				        formatting : {
-				            // group "flow"
-				            flow : [ 'b', 'em', 'u' ],
-				            // group "phrasing"
-				            phrasing : [ 'phrasing' ] // "phrasing" is the name of a
-				            // MultiSplitButton from the format plugin, which contains
-				            // elements like h1 ...
-				        },
-				        // will generate another tab labeled "insert"
-				        insert : {
-				            // as mentioned group names are not displayed anywhere,
-				            // so you might pick an arbitrary name
-				            first : [ 'image', 'insertLink' ]
-				        }
-					    },
-							components: {
-								phrasing : [ 'h1', 'h2', 'h3' ]
-							}
-						}
-					}
-				});
-    	});
-		</script> -->
-
   </body>
 </html>

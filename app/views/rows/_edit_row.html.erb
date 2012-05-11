@@ -6,6 +6,5 @@
 			<%= f.hidden_field :row_id, :value => row.id %>
 			<%= f.submit raw('&plus;'), :class => "btn btn-mini add-col" %>
 		<% end %>
-		<%= link_to(raw('&minus;'), row, :method => 'delete', :remote => true, :class => "btn btn-mini btn-danger delete-row") %>
 	</div>
 <%end%>

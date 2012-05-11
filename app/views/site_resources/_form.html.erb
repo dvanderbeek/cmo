@@ -11,19 +11,6 @@
     </div>
   <% end %>
 
-	<div class="field" style="float: left;">
-    <%= f.label :resource_type %>
-    <%= f.select(
-    			:resource_type,
-    			options_for_select(
-    				[["CSS", 'css'], ["Javascript", 'js'],["File", 'file']],
-    				@site_resource.resource_type
-    			),
-    			{},
-    			:class => "span2"
-    		)
-    %>
-  </div>
 	<div class="field" style="float: left; margin-left: 10px;">
     <%= f.label :resource_url, "URL" %>
     <%= f.text_field :resource_url, :class => "span2" %>

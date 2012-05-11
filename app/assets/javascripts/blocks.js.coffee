@@ -6,6 +6,27 @@ jQuery ->
   	connectWith: '.blocks'
   	cancel: '.aloha'
   	revert: true
-  	containment: '#canvas-padding'
-#    update: ->
-#      $.post($(this).data('update-url'), $(this).sortable('serialize'))
+  	opacity: 0.4
+  	helper: 'clone'
+  	forceHelperSize: true
+  	dropOnEmpty: true
+  	scroll: false
+  	handle: '.handle',
+  	tolerance: 'pointer' #'intersect' or 'pointer'
+  	placeholder: "block-sort-placeholder"
+  	update: ->
+  		url = $(this).data('update-url')
+  		col = $(this).parent('.col').attr('id')
+  		data = "col[]="+col+"&"+$(this).sortable('serialize')
+  		$.post url, data
+
+$ ->
+  $.ctrl "S", ->
+    blocks = {}
+    url = $(".block").data("update-url")
+    $(".block").each ->
+      id = $(this).data("id")
+      content = $(this).html()
+      blocks[id] = content
+
+    $.post url, blocks
