@@ -65,18 +65,16 @@ $(function(){
 		$('.block').each(function(){
 	    var dRight = $(window).width() - $(this).offset().left - $(document).scrollLeft();
 	    if( dRight < $(this).prev('div').width() ) {
-	    	$(this).prev('div').css('position','absolute').css('right', '-67px');
+	    	$(this).prev('div').css('position','absolute').css('right', '-47px');
 	    }
 		});
 
-		$('.delete-block').live('click', function(){
-			var url = $(this).parent('ul').parent('.wysiwyg').parent('.block').data('delete-url');
-			$.ajax({
-			  type: "DELETE",
-			  url: url,
-			  context: $(this).parent('ul').parent('.wysiwyg').parent('.block')
-			}).done(function(e){
-				$(this).remove();
-			});
+		$('.nicEdit-panel').each(function(){
+			var block_id = $(this).parent('div').parent('div').siblings('.block').attr('id');
+			$(this).append('<a href="/blocks/'+block_id+'" data-method="delete" data-remote="true" class="delete_block" data-confirm="Are you sure?" rel="nofollow"><i class="icon-trash icon-white" style="margin: 4px 0px 0px 3px;"></i></a>');
 		});
+		$('.delete_block').bind('ajax:success', function() {
+			$(this).closest('.block-container').fadeOut();
+		});
+
 });

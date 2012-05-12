@@ -62,3 +62,11 @@ var area = new nicEditor({
 	    	$(this).prev('div').css('position','absolute').css('right', '-67px');
 	    }
 		});
+
+		$('.nicEdit-panel').each(function(){
+			var block_id = $(this).parent('div').parent('div').siblings('.block').attr('id');
+			$(this).append('<a href="/blocks/'+block_id+'" title="Delete Block" data-method="delete" data-remote="true" class="delete_block" data-confirm="Are you sure?" rel="nofollow"><i class="icon-trash icon-white" style="margin: 4px 0px 0px 3px;"></i></a>');
+		});
+		$('.delete_block').bind('ajax:success', function() {
+			$(this).closest('.block-container').fadeOut();
+		});

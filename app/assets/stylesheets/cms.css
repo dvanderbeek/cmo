@@ -1324,6 +1324,12 @@ tr.el-finder-droppable td.icon  p { background-position:5px -450px; }
 	outline: none;
 	background: #f1f1f1;
 }
+.delete_block {
+	opacity: 0.6;
+}
+.delete_block:hover {
+	opacity: 1.0;
+}
 .nicEdit-panel {
     display: none;
     position: absolute;
