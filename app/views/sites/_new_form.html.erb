@@ -1,8 +1,8 @@
-<div id="add_site" class="modal" style="display: none;">
+<div id="add_site" class="modal modal-fixed" style="display: none;">
 	<%= form_for(@new_site, :html => {:multipart => true, :style => "margin: 0px;"}) do |f| %>
   <div class="modal-header">
     <a class="close" data-dismiss="modal">×</a>
-    <h3>Add a Page</h3>
+    <h3>Create a Site</h3>
   </div>
   <div class="modal-body">
 		  <% if @new_site.errors.any? %>
@@ -30,6 +30,7 @@
 			    <%= f.text_area :robots, :rows => 5 %>
 			  </div>
 			  <div class="field">
+			  	<%= f.label :layout %>
 			    <%= f.collection_select(:layout_id, Layout.all, :id, :title)%>
 			  </div>
 
@@ -42,11 +43,9 @@
 
   </div>
   <div class="modal-footer">
-  	<div class="modal-footer-padding">
-  		<a href="#" class="btn secondary" data-dismiss="modal">Cancel</a>
-  		<%= f.submit :class => "btn btn-primary" %>
+  		<a href="#" class="btn btn-inverse" data-dismiss="modal">Cancel</a>
+  		<%= f.submit :class => "btn" %>
       <div class="clear"></div>
-    </div>
   </div>
   <% end %>
 </div>

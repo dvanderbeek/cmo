@@ -3,6 +3,77 @@
 <head>
   <title>Condo Motion</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
+  <style type="text/css">
+  	ul.home_nav {
+			float: right;
+			margin-top: 20px;
+			font-size: 15px;
+			color: #fff;
+			font-weight: normal;
+  	}
+  	ul.home_nav li a {
+			color: #fff;
+			text-decoration: none;
+			text-shadow: 0 2px 3px rgba(0, 0, 0, 0.35);
+  	}
+  	ul.home_nav li {
+			display: inline-block;
+			margin-left: 15px;
+  	}
+  	h1 {
+  		font-size: 30px;
+  		margin-bottom: 15px;
+  		line-height: 1.2;
+  		font-family: 'Candal', sans-serif;
+  		letter-spacing: -1px;
+  		text-shadow: 0 2px 3px rgba(0, 0, 0, 0.35);
+  		color: rgba(255, 255, 255, 0.9);
+  	}
+  	.subtext {
+  		font-size: 22px;
+  		margin-bottom: 20px;
+  		font-weight: 200;
+  		line-height: 1.5;
+  		text-shadow: 0 2px 3px rgba(0, 0, 0, 0.35);
+  		color: rgba(255, 255, 255, 0.9);
+  	}
+  	body {
+  		background-color: #336895;
+  		color: white;
+  		background-image: -webkit-gradient(linear, left center, right center, from(#336895), to(#336895));
+  		background-image: -webkit-linear-gradient(left, #336895 0%,#618CB7 50%,#336895 100%);
+  		background-image: -moz-linear-gradient(left,#336895 0%,#618CB7 50%, #336895 100%);
+  		background-image: -ms-linear-gradient(left, #336895 0%, #618CB7 50%, #336895 100%);
+  		background-image: -o-linear-gradient(left, #336895 0%, #618CB7 50%, #336895 100%);
+  		background-image: linear-gradient(left, #336895 0%, #618CB7 50%, #336895 100%);
+  	}
+  	.page-content {
+  		margin-top: 20px;
+  		background: #EDEDED;
+  		color: #333;
+  		border-top: 1px solid white;
+  		border-left: 1px solid white;
+  		border-right: 2px solid #DDDFE1;
+  		border-bottom: 2px solid #DDDFE1;
+  		-moz-box-shadow: 1px 1px 3px #333;
+  		-webkit-box-shadow: 1px 1px 3px #333;
+  		-box-shadow: 1px 1px 3px #333;
+  		-moz-border-radius: 3px;
+  		-webkit-border-radius: 3px;
+  		border-radius: 3px;
+  	}
+  	.footer-links {
+  		font-size: 16px;
+  		color: #F1F1F1;
+  		text-align: center;
+  	}
+  	.footer-links a {
+			padding-left: 15px;
+			color: #F1F1F1;
+			text-decoration: none;
+			font-weight: normal;
+		}
+  </style>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <link rel="shortcut icon" href="favicon.png">
@@ -10,7 +81,7 @@
 <body>
 
 <div id="wrap">
-	<div id="main" class="container" style="padding-top: 60px;">
+	<div id="main" class="container" style="padding-top: 30px;">
 		<% if flash[:alert] %>
 		  <p class="alert alert-error"><a class="close" data-dismiss="alert">×</a> <%= flash[:alert] %></p>
 		<% end %>
@@ -18,7 +89,42 @@
 		  <p class="alert alert-success"><a class="close" data-dismiss="alert">×</a> <%= flash[:notice] %></p>
 		<% end %>
 
+		<%= link_to image_tag("logo_light.png"), home_index_path, :style => "float: left;" %>
+		<ul class="home_nav">
+			<li><%= link_to 'Plans & Pricing', home_plans_path %></li>
+			<li><%= link_to 'Features', home_features_path %></li>
+			<li><%= link_to 'About', home_about_path %></li>
+			<li><%= link_to 'Support', home_support_path %></li>
+			<% if user_signed_in? %>
+				<li><%= link_to "Sign Out", destroy_user_session_url(subdomain: false), :method => :delete, :class => "btn btn-large", :style => "color: #333;" %></li>
+				<li><%= link_to "Dashboard", sites_path, :class => "btn btn-large", :style => "color: #333;" %></li>
+			<% else %>
+				<li><%= link_to "Log In", new_user_session_path, :class => "btn btn-large", :style => "color: #333;" %></li>
+				<li><%= link_to "Sign Up", "#myModal", :class => "btn btn-large btn-success", 'data-toggle' => "modal" %></li>
+			<% end %>
+		</ul>
+
+		<div class="clear"></div>
+
 		<%= yield %>
+
+		<div class="modal hide fade" id="myModal">
+		  <div class="modal-header">
+		    <a class="close" data-dismiss="modal">×</a>
+		    <h3>Sign up</h3>
+		  </div>
+		  <%= form_for("user", :url => user_registration_path, :style => "margin: 0px;") do |f| %>
+		  <div class="modal-body">
+			  <div><%= f.email_field :email, :class => "large", :placeholder => "Email" %></div>
+			  <div><%= f.password_field :password, :class => "large", :placeholder => "Password" %></div>
+			  <div><%= f.password_field :password_confirmation, :class => "large", :placeholder => "Confirm Password" %></div>
+			</div>
+		  <div class="modal-footer">
+		    <a href="#" class="btn" data-dismiss="modal">Close</a>
+		    <%= f.submit "Sign up", :class => "btn btn-primary" %>
+		  </div>
+		  <% end %>
+		</div>
 
 	</div> <!-- /container -->
 </div> <!-- /wrap -->

@@ -1,15 +1,12 @@
 <footer>
 	<div class="container">
-		<p style="float:left;">&copy; Condo Motion 2012</p>
-		<div class="pull-right">
-			<div id="user_nav" style="">
-			  <% if user_signed_in? %>
-			    Signed in as <%= current_user.email %>. Not you?
-			    <%= link_to "Sign out", destroy_user_session_url(subdomain: false), :method => :delete %>
-			  <% else %>
-			    <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
-			  <% end %>
-			</div>
-		</div>
+		<div class="footer-links">
+			<strong>&copy; Condo Motion 2012</strong>
+      <!-- <a href="#">About</a>
+           <a href="#">Blog</a> -->
+      <a href="content_policy.pdf" target="_blank">Content Policy</a>
+      <a href="privacy_policy.pdf" target="_blank">Privacy Policy</a>
+      <a href="terms_of_service.pdf" target="_blank">Terms of Service</a>
+    </div>
 	</div>
 </footer>

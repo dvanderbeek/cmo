@@ -1,4 +1,4 @@
-<div id="add_page" class="modal" style="display: none;">
+<div id="add_page" class="modal modal-fixed" style="display: none;">
 	<%= form_for( @new_page, :style => "margin: 0px;" ) do |f| %>
   <div class="modal-header">
     <a class="close" data-dismiss="modal">×</a>
@@ -21,18 +21,16 @@
 		    <%= f.label :title %>
 		    <%= f.text_field :title %>
 		  </div>
-		  <div class="field">
+		  <!-- <div class="field">
 		    <%= f.label :parent %>
 		    <%= f.collection_select(:parent, @pages, :id, :title, :include_blank => true)%>
-		  </div>
+		  </div> -->
 
   </div>
   <div class="modal-footer">
-  	<div class="modal-footer-padding">
-  		<a href="#" class="btn secondary" data-dismiss="modal">Cancel</a>
-  		<%= f.submit :class => "btn btn-primary" %>
+  		<a href="#" class="btn btn-inverse" data-dismiss="modal">Cancel</a>
+  		<%= f.submit :class => "btn" %>
       <div class="clear"></div>
-    </div>
   </div>
   <% end %>
 </div>

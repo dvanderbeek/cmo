@@ -2,15 +2,15 @@ $(function(){
 	var area = new nicEditor({
 		iconsPath: "<%= asset_path('wysiwyg/nicEditIcons-latest.png') %>",
     buttonList : [
-  		//'xhtml',
+  		'xhtml',
       'bold',
       'italic',
       'underline',
-      //'subscript',
-			//'superscript',
-			//'strikethrough',
+      'subscript',
+			'superscript',
+			'strikethrough',
       'forecolor',
-      //'bgcolor',
+      'bgcolor',
       'left',
       'center',
       'right',
@@ -60,12 +60,12 @@ $(function(){
 			$('#saving-indicator').fadeOut('slow');
 		});
 
-		$('.nicEdit-panelContain').parent().css('width', '600px');
-		//find dist from edge of each block to right side of window.  if < 600px, set the above element to position absolute and right -67px (changes depending on how wide editor is)
+		$('.nicEdit-panelContain').parent().css('width', '653px');
+
 		$('.block').each(function(){
 	    var dRight = $(window).width() - $(this).offset().left - $(document).scrollLeft();
 	    if( dRight < $(this).prev('div').width() ) {
-	    	$(this).prev('div').css('position','absolute').css('right', '-47px');
+	    	$(this).prev('div').css('position','absolute').css('left', '-'+($(this).prev('div').width() - dRight + 20)+'px');
 	    }
 		});
 

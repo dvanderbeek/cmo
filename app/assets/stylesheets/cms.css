@@ -45,8 +45,8 @@ margin-top:-32767px;/* thank you Erik J - negate effect of float*/
 form {margin:0px;}
 img {max-width: 100%;}
 .modal-backdrop, .modal-backdrop.fade.in {
-	opacity: 0.95;
-	filter: alpha(opacity=95);
+	opacity: 0.5;
+	filter: alpha(opacity=50);
 }
 
 body, label {
@@ -248,7 +248,7 @@ li.icon-cardio-lg {
 	clear: both;
 }
 
-.modal-fixed {
+/*.modal-fixed {
 	position: fixed;
 	top: 0px;
 	bottom: 0px;
@@ -258,20 +258,104 @@ li.icon-cardio-lg {
 	margin-left: -320px;
 	border-radius: 0px;
 	moz-border-radius: 0px;
+	background: black;
+	color: white;
+}
+.modal-fixed .modal-header {
+	background: black;
+	color: white;
+	padding: 15px;
+	border-bottom: none;
+}
+.modal-fixed .modal-header h3 {
+	color: white;
+	font-size: 24px;
+}
+.modal-fixed .modal-body label {
+	color: white;
+
 }
 .modal-fixed .modal-body {
 	max-height: 550px;
 
 }
-
 .modal-fixed .modal-footer {
 	position: absolute;
 	bottom: 0px;
 	width: 100%;
 	padding: 0px;
+	background: #222;
+	color: white;
+	border-top: none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+
+}
+.modal-fixed .modal-footer .btn {
+	border-radius: 15px;
 }
 .modal-fixed .modal-footer-padding {
 	padding: 14px 15px 15px 15px;
+}*/
+.modal-fixed {
+    position: fixed;
+    top: 0px!important;
+    width: 640px;
+    bottom: 0px;
+    margin: 0px 0 0 -320px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    background: black;
+    color: white;
+}
+.modal-fixed .modal-header {
+    position: absolute;
+    top: 0px;
+    width: 610px;
+    border-bottom:none;
+}
+.modal-fixed .modal-header .close {
+    color: #FFF;
+}
+.modal-fixed .modal-body {
+    position: absolute;
+    top: 46px;
+    bottom: 57px;
+    max-height: 10000px;
+    width: 610px;
+}
+.modal-fixed .modal-body input, .modal-fixed .modal-body textarea {
+	font-size: 18px;
+	color: #555;
+	padding: 10px;
+	width: 590px;
+}
+.modal-fixed .modal-body label {
+	color: #FFF;
+}
+.modal-fixed .modal-footer {
+    position: absolute;
+    bottom: 0px;
+    width: 610px;
+    background: #222;
+    border-top: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-border-radius: 0px;
+		-moz-border-radius: 0px;
+		border-radius: 0px;
+}
+.modal-fixed .modal-footer .btn {
+    -webkit-border-radius: 16px;
+    -moz-border-radius: 16px;
+    border-radius: 16px;
+}
+.modal-backdrop, .modal-backdrop.fade.in {
+    opacity: 0.5;
+    filter: alpha(opacity=50);
 }
 #page-title, #site-title {
 	border: 0px;
@@ -424,6 +508,9 @@ html {
 	margin: 0px;
 	padding: 0px;
 	min-height: 30px;
+}
+ul.blocks {
+	margin: 0px;
 }
 .block-sort-placeholder {
 	width: 100%;

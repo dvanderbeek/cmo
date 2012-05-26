@@ -33,6 +33,10 @@ Cms::Application.routes.draw do
   match '/:id/edit', to: 'pages#edit', constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }, :as => :edit_page
 
   get "home/index"
+  get "home/plans"
+  get "home/features"
+  get "home/about"
+  get "home/support"
   root :to => 'home#index'
 
   # The priority is based upon order of creation:

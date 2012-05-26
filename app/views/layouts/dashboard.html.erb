@@ -82,6 +82,11 @@
 
 	<div id="canvas">
 		<div id="canvas-padding">
+				<%= form_for((!@page.nil? ? @page : @site), :html => {:class => 'ctrl', :remote => true }) do |f| %>
+				  <div class="field">
+				    <%= f.hidden_field :title, :class => 'title' %>
+				  </div>
+				<% end %>
 			<input type="text" value="<%= !@page.nil? ? @page.title : @site.title %>" id="<%= !@page.nil? ? 'page' : 'site' %>-title"/><div style="position: relative; display: none; top: 8px;" id="saving-indicator">Saving...</div>
 			<i class="icon-cogs-lg pull-right" id="page-settings-toggle" style="width: 26px; height: 26px; margin-bottom: 5px; margin-left: 7px; cursor: pointer;"></i>
 			<%= link_to raw('<i class="icon-eye-lg pull-right" id="page-design-toggle" style="width: 31px; height: 26px; margin-bottom: 5px; margin-left: 7px; cursor: pointer;"></i>'), ( !@page.nil? ? page_url(@page) : root_url(subdomain: @site.subdomain) ) %>
