@@ -16,19 +16,19 @@
 		<div style="padding-top: 30px; text-align: center;">
 <!-- 		icons are adjusted to 55% lightness and then 95% again for the white ones	 -->
 			<ul class="nav nav-list nav-list-padded" style="padding: 0px;">
-				<li class="icon-pages-lg active-lg link" id="pages"><a rel="tooltip" data-original-title="Pages & Content" href="#"></a></li>
-				<li class="icon-group-lg link"><a rel="tooltip" data-original-title="Users" href="#"></a></li>
-				<li class="icon-cardio-lg link"><a rel="tooltip" data-original-title="Activity & Comments" href="#"></a></li>
-				<li class="icon-usd-lg link"><a rel="tooltip" data-original-title="Payments" href="#"></a></li>
-				<li class="icon-cogs-lg link" id="settings"><a rel="tooltip" data-original-title="Settings" href="#"></a></li>
+				<li class="icon-pages-lg active-lg link"><a rel="tooltip" data-original-title="Pages & Content" href="#pages"></a></li>
+				<li class="icon-group-lg link"><a rel="tooltip" data-original-title="Users" href="#users"></a></li>
+				<li class="icon-cardio-lg link"><a rel="tooltip" data-original-title="Activity & Comments" href="#activity"></a></li>
+				<li class="icon-usd-lg link"><a rel="tooltip" data-original-title="Payments" href="#payments"></a></li>
+				<li class="icon-cogs-lg link"><a rel="tooltip" data-original-title="Settings" href="#settings"></a></li>
 
-				<li class="icon-imac-lg link" id="sites"><%= link_to "", '#', 'data-original-title' => "Your Sites", :rel => "tooltip"%></li>
+				<li class="icon-imac-lg link"><%= link_to "", '#sites', 'data-original-title' => "Your Sites", :rel => "tooltip"%></li>
 				<li class="icon-power-lg"><%= link_to "", destroy_user_session_url(subdomain: false), method: :delete, 'data-original-title' => "Sign Out", :rel => "tooltip" %></li>
 				<!-- <li class="icon-eye-lg"><a rel="tooltip" data-original-title="Preview" id="preview" href="#"></a></li> -->
 			</li>
     </div>
 	</div>
-	<div id="pages" class="side-nav-secondary">
+	<div id="#pages" class="side-nav-secondary">
 		<div style="padding-top: 30px;">
 			<h4 class="site-title-preview"><%= @site.title %></h4>
 			<!-- <h4>Pages</h4> -->
@@ -55,7 +55,7 @@
     </div>
 	</div>
 
-	<div id="sites" class="side-nav-secondary" style="display: none;">
+	<div id="#sites" class="side-nav-secondary" style="display: none;">
 		<div style="padding-top: 30px;">
 			<h4>Your Sites</h4>
 			<ul class="nav nav-list"">
@@ -69,12 +69,12 @@
 	    </ul>
     </div>
 	</div>
-	<div id="settings" class="side-nav-secondary" style="display: none;">
+	<div id="#settings" class="side-nav-secondary" style="display: none;">
 		<div style="padding-top: 30px;">
 			<h4><%= @site.title %></h4>
 			<ul class="nav nav-list">
 	      <li style="position: relative;">
-	      	<%= link_to '<i class="icon-wrench"></i> General'.html_safe, edit_site_url(@site	) %>
+	      	<%= link_to '<i class="icon-wrench"></i> General'.html_safe, edit_site_url(@site)+"#settings" %>
 			  <!-- 	<a href="#"><i class="icon-wrench"></i> General</a> -->				 </li>
 	    </ul>
     </div>
@@ -142,14 +142,14 @@
 					$("#page-settings").slideToggle('fast');
 				});
 
-				$('.link').click(function(){
-					var panel = $(this).attr('id');
-					$(this).siblings('li').removeClass('active-lg');
-					$(this).addClass('active-lg');
-					$(".side-nav-secondary").hide()
-					$(".side-nav-secondary#"+panel).show()
-					return false;
-				});
+				// $('.link').click(function(){
+					// var panel = $(this).attr('id');
+					// $(this).siblings('li').removeClass('active-lg');
+					// $(this).addClass('active-lg');
+					// $(".side-nav-secondary").hide()
+					// $(".side-nav-secondary#"+panel).show()
+					// return false;
+				// });
 
 				$("#preview").click(function(){
 					$("#side-nav-secondary").toggle();

@@ -172,7 +172,7 @@ input.large {
 .icon-group-lg {
 	background: url('glyphicons/glyphicons_043_group.png') no-repeat 50%;
 }
-.icon-group-lg:hover, .icon-power-lg.active-lg  {
+.icon-group-lg:hover, .icon-group-lg.active-lg  {
 	background: url('glyphicons/glyphicons_043_group_white.png') no-repeat 50%;
 }
 .icon-lock-lg {

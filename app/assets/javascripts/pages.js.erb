@@ -77,4 +77,19 @@ $(function(){
 			$(this).closest('.block-container').fadeOut();
 		});
 
+		$(window).hashchange( function(){
+			var hash = (location.hash === '' ? '#pages' : location.hash);
+
+			//add or remove the active class on side-nav-primary links
+			$('#side-nav-primary').children('div').children('ul').children('li').each(function(){
+				var that = $(this);
+				that[ that.children('a').attr( 'href' ) === hash ? 'addClass' : 'removeClass' ]( 'active-lg' );
+			});
+			//show the proper side-nav-secondary panel
+			$('.side-nav-secondary').each(function(){
+				$(this).attr('id') === hash ? $(this).show() : $(this).hide();
+			});
+		});
+		$(window).hashchange();
+
 });
